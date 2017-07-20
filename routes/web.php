@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('main_template.index');
 });
+
+Route::get('/test', function () {
+    return view('test.index');
+});
