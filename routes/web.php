@@ -11,10 +11,17 @@
 |
 */
 
+use \Illuminate\Support\Facades\Route as Route;
+
 Route::get('/', function () {
     return view('main_template.index');
 });
 
+//Route::group(['middleware' => 'web']);\
 Route::get('/test', function () {
     return view('test.index');
-});
+})->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
