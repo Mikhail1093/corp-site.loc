@@ -18,6 +18,7 @@
 
 <hr>
 <footer>
+    футер из шаблона
     @yield('footer')
 </footer>
 </body>
