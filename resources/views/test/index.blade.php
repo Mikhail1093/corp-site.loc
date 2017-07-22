@@ -15,6 +15,9 @@
 
 @section('content')
     <p>Это - содержимое страницы.</p>
+    {!! Form::open(array('url' => '/test')) !!}
+    //
+    {!! Form::close() !!}
 @stop
 
 @section('footer')
