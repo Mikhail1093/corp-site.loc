@@ -1,8 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\CorpSite;
+namespace App\Http\Controllers\CorpSite\Api;
 
+use App\Http\Controllers\CorpSite\AppController;
     /**
      * Class MainPageController
      *
@@ -10,7 +11,7 @@ namespace App\Http\Controllers\CorpSite;
      */
 
 /** @noinspection LongInheritanceChainInspection */
-class MainPageController extends AppController
+class Users extends AppController
 {
     /**
      * @return \Illuminate\Support\Facades\View
@@ -18,11 +19,13 @@ class MainPageController extends AppController
     /** @noinspection PhpMissingParentCallCommonInspection */
     public function execute()
     {
-        return view(
-            'main_template.index',
-            [
-                'title' => 'test title'
+        return response()->json([
+            'name'    => 'user',
+            'email'   => 'sdf@sfsd.ri',
+            'address' => [
+                'street' => 'ostr',
+                'house'  => 213
             ]
-        );
+        ]);
     }
 }

@@ -14,9 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('main_template.index', ['title' => 'test title']);
-})->name('main_page');
+Route::get('/', 'CorpSite\MainPageController@execute')->name('main_page');
 
 Route::get('/blog', function () {
     return view('main_template.blog_list', ['title' => 'Наш блог']);
@@ -30,5 +28,3 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/test-ex', 'CorpSite\MainPageController@execute');
