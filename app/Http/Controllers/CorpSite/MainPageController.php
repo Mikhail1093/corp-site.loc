@@ -1,16 +1,16 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\CorpSite;
+namespace Nova\Http\Controllers\CorpSite;
 
-use App\Models\CorpSite\{
+use Nova\Models\CorpSite\{
     MainMenu,
     Slide
 };
     /**
      * Class MainPageController
      *
-     * @package App\Http\Controllers\CorpSite
+     * @package Nova\Http\Controllers\CorpSite
      */
 
 /** @noinspection LongInheritanceChainInspection */

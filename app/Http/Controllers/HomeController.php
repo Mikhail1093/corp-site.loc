@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Nova\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 /**
  * Class HomeController
  *
- * @package App\Http\Controllers
+ * @package Nova\Http\Controllers
  */
 class HomeController extends Controller
 {

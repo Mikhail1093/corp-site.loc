@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\CorpSite;
+namespace Nova\Models\CorpSite;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Slide
  *
- * @package App\Models\CorpSite
+ * @package Nova\Models\CorpSite
  */
 class Slide extends Model
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Nova\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;

@@ -34,6 +34,7 @@ return [
     |
     | When your application is in debug mode, detailed error messages with
     | stack traces will be shown on every error that occurs within your
+    | stack traces will be shown on every error that occurs within your
     | application. If disabled, a simple generic error page is shown.
     |
     */
@@ -172,11 +173,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Nova\Providers\AppServiceProvider::class,
+        Nova\Providers\AuthServiceProvider::class,
+        // Nova\Providers\BroadcastServiceProvider::class,
+        Nova\Providers\EventServiceProvider::class,
+        Nova\Providers\RouteServiceProvider::class,
 
     ],
 

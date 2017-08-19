@@ -1,13 +1,13 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\CorpSite\Api;
+namespace Nova\Http\Controllers\CorpSite\Api;
 
-use App\Http\Controllers\CorpSite\AppController;
+use Nova\Http\Controllers\CorpSite\AppController;
     /**
      * Class MainPageController
      *
-     * @package App\Http\Controllers\CorpSite
+     * @package Nova\Http\Controllers\CorpSite
      */
 
 /** @noinspection LongInheritanceChainInspection */

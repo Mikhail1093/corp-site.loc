@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\CorpSite;
+namespace Nova\Http\Controllers\CorpSite;
 
-use App\Models\CorpSite\MainMenu;
-use \App\Http\Controllers\Controller;
+use Nova\Models\CorpSite\MainMenu;
+use \Nova\Http\Controllers\Controller;
 
 /**
  * Class AppController
  *
- * @package App\Http\Controllers\CorpSite
+ * @package Nova\Http\Controllers\CorpSite
  */
 class AppController extends Controller
 {
