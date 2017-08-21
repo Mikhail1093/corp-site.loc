@@ -14,6 +14,7 @@ class MainMenuTableSeeder extends Seeder
      */
     public function run()
     {
+        // example - $menuItems = $this->getMenuItems(); ...
         DB::table('main_menu')->insert(
             [
                 [
@@ -34,5 +35,10 @@ class MainMenuTableSeeder extends Seeder
                 ]
             ]
         );
+    }
+
+    private function getMenuItems()
+    {
+        return DB::table('main_menu')->get();
     }
 }
