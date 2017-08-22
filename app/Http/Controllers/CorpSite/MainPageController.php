@@ -3,10 +3,10 @@ declare(strict_types = 1);
 
 namespace Nova\Http\Controllers\CorpSite;
 
-use Nova\Models\CorpSite\{
-    MainMenu,
-    Slide
-};
+    /*use Nova\Models\CorpSite\{
+        MainMenu,
+        Slide
+    };*/
     /**
      * Class MainPageController
      *
@@ -22,16 +22,17 @@ class MainPageController extends AppController
     /** @noinspection PhpMissingParentCallCommonInspection */
     public function execute()
     {
-        //результирующий массив гдавной страницы 
+        //результирующий массив гдавной страницы
         $result = [];
 
         $result['menu'] = $this->getMainMenu();
 
         dump($result);
+
         return view(
             'main_template.index',
             [
-                'title' => 'test title',
+                'title'  => 'test title',
                 'result' => $result
             ]
         );

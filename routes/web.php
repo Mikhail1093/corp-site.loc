@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +15,23 @@ use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Route;
 
 Route::get('/', 'CorpSite\MainPageController@execute')->name('main_page');
+Route::get('/about-us', 'CorpSite\AboutUsController@execute')->name('about_us');
+Route::get('/services', 'CorpSite\ServicesController@execute')->name('services');
+Route::get('/portfolio', 'CorpSite\PortfolioController@execute')->name('portfolio');
+/*show feed back form*/
+Route::get('/contact', 'CorpSite\ContactController@execute')->name('contact');
+/*save results from feedback form*/
+Route::post('contact', 'CorpSite\ContactController@saveFeedBack')->name('save_feed_back');
+Route::get('/faq', 'CorpSite\FaqController@execute')->name('faq');
+Route::get('/pricing', 'CorpSite\PricingController@execute')->name('pricing');
+Route::get('/privacy', 'CorpSite\PrivacyController@execute')->name('privacy');
+Route::get('/career', 'CorpSite\CareerController@execute')->name('career');
 
-Route::get('/blog', function () {
-    return view('main_template.blog_list', ['title' => 'Наш блог']);
-});
+Route::get('/blog', 'CorpSite\BlogController@list')->name('blog_list');
+Route::get('/blog{code}', 'CorpSite\BlogController@single')->name('blog_single');
+Route::get('/blog/categories', 'CorpSite\BlogCategoriesController@execute')->name('blog_categories');
+
+Route::get('/search', 'CorpSite\SearchController@execute')->name('search_page'); //todo еще не проработано
 
 //Route::group(['middleware' => 'web']); не использовать в группах
 Route::get('/test', function () {
@@ -28,3 +41,5 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//todo personal cabinet
