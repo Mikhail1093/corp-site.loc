@@ -9,7 +9,9 @@ use Nova\Models\CorpSite\{
     MainMenu,
     Slide,
     Offer,
-    BlogCatigorie
+    BlogCatigorie,
+    Comment,
+    ContactFeedBack
 };
 
 /**
@@ -19,13 +21,14 @@ use Nova\Models\CorpSite\{
  */
 class TestingModelsController extends AppController
 {
+    /**
+     *
+     */
     public function execute()
     {
         $offers = Offer::where('active', 1)->get();
         dump('=================Offers=====================');
         dump($offers);
-
-        $blogCategories = new BlogCatigorie();
 
         dump('=================BlogCategories=====================');
         dump(BlogCatigorie::get());
@@ -35,5 +38,10 @@ class TestingModelsController extends AppController
         foreach ($blogItems as $blogItem) {
             var_dump($blogItem->name);
         }
+        dump('=================Comment=====================');
+        dump(Comment::where('active', 1)->get());
+
+        dump('=================ContactFeedBack=====================');
+        dump(ContactFeedBack::get());
     }
 }
