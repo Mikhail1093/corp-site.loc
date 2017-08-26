@@ -12,5 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VacancyRequirement extends Model
 {
-    //
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vacancy()
+    {
+        return $this->belongsTo('Nova\Models\CorpSite\Vacancy');
+    }
 }

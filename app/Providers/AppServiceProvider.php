@@ -13,12 +13,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Request $request)
     {
-        //
-        /*DB::listen(function ($query) {
-            dump($query->sql);
-        });*/
+        if ('1' === $request->get('sqldbg')) {
+            DB::listen(function ($query) {
+                dump($query->sql);
+            });
+        }
     }
 
     /**

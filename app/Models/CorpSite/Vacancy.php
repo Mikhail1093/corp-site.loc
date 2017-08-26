@@ -12,5 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vacancy extends Model
 {
-    //
+    public function vacancyRequirement()
+    {
+        return $this->hasMany('Nova\Models\CorpSite\VacancyRequirement');
+    }
 }

@@ -5,6 +5,7 @@ namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
 use Nova\Http\Controllers\Controller;
+use Nova\User;
 
 use Nova\Models\CorpSite\{
     Work,
@@ -38,6 +39,47 @@ class TestingModelsController extends AppController
      */
     public function execute()
     {
+        dump('=================Сomments from blog=====================');
+        $comments = Blog::find(1)->comment;
+        dump($comments->toArray());
+
+        dump('=================Pots name from comment=====================');
+        $postName = Comment::find(1)->blog;
+        dump($postName->name);
+
+        dump('=================Pots name from comment=====================');
+
+        dump('=================vacancyRequirement=====================');
+        $vacancyRequirement = Vacancy::find(1)->vacancyRequirement;
+        dump($vacancyRequirement);
+
+        dump('=================Vacancy name from vacancyRequirement=====================');
+        $vacancyName = VacancyRequirement::find(2)->vacancy;
+        dump($vacancyName->name);
+
+        dump('=================Blog with category=====================');
+        $blogCategory = Blog::find(1)->blogCatigorie;
+        dump($blogCategory);
+        
+        $author = Blog::find(1)->user;
+        dump('=================Post author email=====================');
+        dump($author->email);
+
+
+        dump('=================User=====================');
+        dump(User::get());
+
+        $usersPosts = User::find(2)->blog;
+        dump($usersPosts);
+
+        $user = new User();
+
+        dump($user->blog()->where('user_id', 2)->get());
+
+        foreach ($usersPosts as $usersPost) {
+            var_dump($usersPost->name);
+        }
+
         $offers = Offer::where('active', 1)->get();
         dump('=================Offers=====================');
         dump($offers);
