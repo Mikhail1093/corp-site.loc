@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class ContactFeedBack
  *
  * @package Nova\Models\CorpSite
+ *
+ * @method static find(mixed $key, array $columns = ['*']))
  */
 
 /** @noinspection ClassOverridesFieldOfSuperClassInspection */

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method get()
  * @method static where()
+ * @method static find(mixed $key, array $columns = ['*']))
  */
 
 /** @noinspection ClassOverridesFieldOfSuperClassInspection */

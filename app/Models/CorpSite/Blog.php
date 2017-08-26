@@ -9,9 +9,16 @@ use Illuminate\Database\Eloquent\Model;
  * Class Blog
  *
  * @package Nova\Models\CorpSite
+ *
+ * @method static find(mixed $key, array $columns = ['*']))
  */
 class Blog extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'blog';
 
     /**
