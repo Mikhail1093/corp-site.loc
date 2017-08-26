@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Nova\Models\CorpSite;
 
@@ -16,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
 /** @noinspection ClassOverridesFieldOfSuperClassInspection */
 class MainMenu extends Model
 {
-    //
     /**
      * The table associated with the model.
      *

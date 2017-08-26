@@ -6,11 +6,11 @@ namespace Nova\Models\CorpSite;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Vacancy
+ * Class VacancyRequirement
  *
  * @package Nova\Models\CorpSite
  */
-class Vacancy extends Model
+class VacancyRequirement extends Model
 {
     //
 }
