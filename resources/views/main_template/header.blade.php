@@ -39,6 +39,9 @@
             </a>
             <a id="logo" class="pull-left" href="index.html"></a>
             <div class="nav-collapse collapse pull-right">
+                {{--@foreach ($result['menu'] as $item)
+                    <div>{{ $item['name'] }}</div>
+                @endforeach--}}
                 <ul class="nav">
                     <li class="active"><a href="index.html">Home</a></li>
                     <li><a href="about-us.html">About Us</a></li>

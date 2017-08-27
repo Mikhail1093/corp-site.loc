@@ -27,7 +27,7 @@ Route::get('/pricing', 'CorpSite\PricingController@execute')->name('pricing');
 Route::get('/privacy', 'CorpSite\PrivacyController@execute')->name('privacy');
 Route::get('/career', 'CorpSite\CareerController@execute')->name('career');
 
-Route::get('/blog', 'CorpSite\BlogController@list')->name('blog_list');
+Route::get('/blog', 'CorpSite\BlogController@execute')->name('blog_list');
 Route::get('/blog{code}', 'CorpSite\BlogController@single')->name('blog_single');
 Route::get('/blog/categories', 'CorpSite\BlogCategoriesController@execute')->name('blog_categories');
 

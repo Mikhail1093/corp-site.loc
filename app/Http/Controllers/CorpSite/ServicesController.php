@@ -1,11 +1,22 @@
 <?php
+declare(strict_types = 1);
 
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
 use Nova\Http\Controllers\Controller;
 
-class ServicesController extends Controller
+/**
+ * Class ServicesController
+ *
+ * @package Nova\Http\Controllers\CorpSite
+ */
+class ServicesController extends AppController
 {
-    //
+    /**
+     *
+     */
+    public function execute()
+    {
+    }
 }

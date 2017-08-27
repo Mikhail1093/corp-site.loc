@@ -4,9 +4,10 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Nova\Models\CorpSite\{
-    MainMenu,
     Slide,
-    Offer
+    Offer,
+    Work,
+    Partner
 };
 /**
  * Class MainPageController
@@ -26,10 +27,14 @@ class MainPageController extends AppController
         //результирующий массив гдавной страницы
         $result = [];
 
-        $result['menu'] = $this->getMainMenu();
-        
-        dump($result);
+        //todo оптимизировать в единый метод получения родительского класса
+        $result['menu'] = $this->getMainMenu()->toArray();
+        $result['slider'] = Slide::where('active', 1)->get()->toArray();
+        $result['offers'] = Offer::where('active', 1)->get()->toArray();
+        $result['works'] = Work::where(['active' => 1, 'show_on_main_page' => 1])->get()->toArray();
+        $result['partners'] = Partner::where('active', 1)->get()->toArray();
 
+        
         return view(
             'main_template.index',
             [
