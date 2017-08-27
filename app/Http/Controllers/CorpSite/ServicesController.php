@@ -18,5 +18,16 @@ class ServicesController extends AppController
      */
     public function execute()
     {
+        $result = [];
+
+        $result['menu'] = $this->getMainMenu();
+
+        return view(
+            'main_template.services',
+            [
+                'title'  => 'Услуги',
+                'result' => $result
+            ]
+        );
     }
 }

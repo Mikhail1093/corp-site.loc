@@ -1,8 +1,18 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<?
+declare(strict_types = 1);
+/**
+ * @var array $result
+ */
+?>
+        <!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,9 +30,12 @@
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="/public/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="/public/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="/public/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/public/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
@@ -39,11 +52,11 @@
             </a>
             <a id="logo" class="pull-left" href="index.html"></a>
             <div class="nav-collapse collapse pull-right">
-                {{--@foreach ($result['menu'] as $item)
-                    <div>{{ $item['name'] }}</div>
-                @endforeach--}}
                 <ul class="nav">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    @foreach((array)$result['menu'] as $item)
+                        <li {{ $item['class'] }}><a href="{{ $item['path'] }}">{{ $item['name'] }}</a></li>
+                    @endforeach
+                    {{--<li class="active"><a href="index.html">Home</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
@@ -63,7 +76,7 @@
                         </ul>
                     </li>
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="contact-us.html">Contact</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>--}}
                     <li class="login">
                         <a data-toggle="modal" href="#loginForm"><i class="icon-lock"></i></a>
                     </li>

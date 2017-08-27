@@ -18,5 +18,6 @@ class PortfolioController extends AppController
      */
     public function execute()
     {
+        $this->getMainMenu();
     }
 }

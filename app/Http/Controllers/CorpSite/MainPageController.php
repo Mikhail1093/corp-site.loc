@@ -28,12 +28,11 @@ class MainPageController extends AppController
         $result = [];
 
         //todo оптимизировать в единый метод получения родительского класса
-        $result['menu'] = $this->getMainMenu()->toArray();
+        $result['menu'] = $this->getMainMenu();
         $result['slider'] = Slide::where('active', 1)->get()->toArray();
         $result['offers'] = Offer::where('active', 1)->get()->toArray();
         $result['works'] = Work::where(['active' => 1, 'show_on_main_page' => 1])->get()->toArray();
         $result['partners'] = Partner::where('active', 1)->get()->toArray();
-
         
         return view(
             'main_template.index',
