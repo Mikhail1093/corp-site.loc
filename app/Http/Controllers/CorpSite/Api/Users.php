@@ -4,11 +4,12 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite\Api;
 
 use Nova\Http\Controllers\CorpSite\AppController;
-    /**
-     * Class MainPageController
-     *
-     * @package Nova\Http\Controllers\CorpSite
-     */
+
+/**
+ * Class MainPageController
+ *
+ * @package Nova\Http\Controllers\CorpSite
+ */
 
 /** @noinspection LongInheritanceChainInspection */
 class Users extends AppController
