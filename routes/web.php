@@ -44,3 +44,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/testing-models', 'CorpSite\TestingModelsController@execute');
 //todo personal cabinet
+
+Route::get('/intest', 'CorpSite\TestComt@execute')->middleware('intest');

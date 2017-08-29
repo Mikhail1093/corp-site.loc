@@ -20,11 +20,11 @@ class ContactController extends AppController
      */
     public function execute(Request $request)
     {
-        if ($request->isMethod('post')) {
+        /*if ($request->isMethod('post')) {
             $this->showFormPage();
         } else {
             $this->saveFeedBack($request);
-        }
+        }*/
     }
 
     /**
