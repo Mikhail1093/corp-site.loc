@@ -18,6 +18,15 @@ class PortfolioController extends AppController
      */
     public function execute()
     {
-        $this->getMainMenu();
+        $result = [];
+        $result['menu'] = $this->getMainMenu();
+
+        return view(
+            'main_template.portfolio',
+            [
+                'title'  => 'Наши работы',
+                'result' => $result
+            ]
+        );
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
-use Nova\Http\Controllers\Controller;
 
 /**
  * Class ContactController
@@ -13,25 +12,36 @@ use Nova\Http\Controllers\Controller;
  */
 class ContactController extends AppController
 {
+
     /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function execute(Request $request)
+    public function execute()
     {
-        /*if ($request->isMethod('post')) {
-            $this->showFormPage();
+        $request = new Request();
+
+        if ($request->isMethod('get')) {
+            return $this->showFormPage();
         } else {
-            $this->saveFeedBack($request);
-        }*/
+            return $this->saveFeedBack($request);
+        }
     }
 
     /**
-     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showFormPage()
     {
+        $result = [];
+        $result['menu'] = $this->getMainMenu();
+
+        return view(
+            'main_template.contact',
+            [
+                'title'  => 'Наши контакты',
+                'result' => $result
+            ]
+        );
     }
 
     /**

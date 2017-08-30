@@ -3,9 +3,9 @@ declare(strict_types = 1);
 
 namespace Nova\Http\Controllers\CorpSite;
 
-use \Illuminate\Support\Facades\Route;
 use Nova\Models\CorpSite\MainMenu;
 use \Nova\Http\Controllers\Controller;
+use \Illuminate\Support\Facades\Route;
 
 /**
  * Class AppController
@@ -15,7 +15,7 @@ use \Nova\Http\Controllers\Controller;
 class AppController extends Controller
 {
     /**
-     * @return bool
+     *
      */
     public function execute()
     {

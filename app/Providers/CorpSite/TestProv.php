@@ -20,7 +20,7 @@ class TestProv extends ServiceProvider
      */
     public function boot()
     {
-        dump(__METHOD__);
+        //dump(__METHOD__);
     }
 
     /**
