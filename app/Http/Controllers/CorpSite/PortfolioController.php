@@ -5,6 +5,7 @@ namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
 use Nova\Http\Controllers\Controller;
+use Nova\Models\CorpSite\Work;
 
 /**
  * Class PortfolioController
@@ -20,6 +21,9 @@ class PortfolioController extends AppController
     {
         $result = [];
         $result['menu'] = $this->getMainMenu();
+        $result['portfolio'] = Work::where('active', 1)->get()->toArray();
+
+        dump($result);
 
         return view(
             'main_template.portfolio',

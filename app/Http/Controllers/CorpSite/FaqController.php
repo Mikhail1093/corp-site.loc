@@ -18,5 +18,16 @@ class FaqController extends AppController
      */
     public function execute()
     {
+        $result = [];
+        
+        $result['menu'] = $this->getMainMenu();
+
+        return view(
+            'main_template.faq',
+            [
+                'title'  => 'FAQ',
+                'result' => $result
+            ]
+        );
     }
 }

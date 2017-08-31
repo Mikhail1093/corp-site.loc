@@ -72,7 +72,12 @@ class TestingModelsController extends AppController
         $usersPosts = User::find(2)->blog;
         dump($usersPosts);
 
+        dump('\'=================User relations=====================');
         $user = new User();
+        $u = User::find(2);
+        dump($u->load('blog'));
+
+
 
         dump($user->blog()->where('user_id', 2)->get());
 

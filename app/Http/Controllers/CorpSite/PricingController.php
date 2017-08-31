@@ -15,9 +15,20 @@ use Nova\Http\Controllers\Controller;
 class PricingController extends AppController
 {
     /**
-     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function execute()
     {
+        $result = [];
+
+        $result['menu'] = $this->getMainMenu();
+
+        return view(
+            'main_template.pricing',
+            [
+                'title'  => 'FAQ',
+                'result' => $result
+            ]
+        );
     }
 }

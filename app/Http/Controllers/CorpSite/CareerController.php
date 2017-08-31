@@ -18,5 +18,16 @@ class CareerController extends AppController
      */
     public function execute()
     {
+        $result = [];
+
+        $result['menu'] = $this->getMainMenu();
+
+        return view(
+            'main_template.career',
+            [
+                'title'  => 'Карьерра',
+                'result' => $result
+            ]
+        );
     }
 }

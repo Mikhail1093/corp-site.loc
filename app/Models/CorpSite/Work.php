@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
  * Class Work
  *
  * @package Nova\Models\CorpSite
+ *
+ * @method get()
+ * @method static where(mixed $key, mixed $value)
+ * @method static find(mixed $key, array $columns = ['*']))
  */
 class Work extends Model
 {

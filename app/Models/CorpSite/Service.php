@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
  * Class Service
  *
  * @package Nova\Models\CorpSite
+ *
+ * @method get()
+ * @method static where(mixed $key, mixed $value)
+ * @method static find(mixed $key, array $columns = ['*']))
  */
 class Service extends Model
 {
