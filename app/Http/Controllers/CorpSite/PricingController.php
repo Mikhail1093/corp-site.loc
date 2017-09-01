@@ -6,6 +6,7 @@ namespace Nova\Http\Controllers\CorpSite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Nova\Http\Controllers\Controller;
+use Nova\Models\CorpSite\Tariff;
 
 /**
  * Class PricingController
@@ -22,6 +23,18 @@ class PricingController extends AppController
         $result = [];
 
         $result['menu'] = $this->getMainMenu();
+        $result['pricing'] = Tariff::where('active', 1)->get()->toArray();
+
+        // парсим json из БД
+        array_walk($result['pricing'], function (&$item) {
+            if (json_decode($item['description'])) {
+                $item['description'] = json_decode($item['description']);
+            } else {
+                $item['description'] = [];
+            }
+        });
+
+        dump($result);
 
         return view(
             'main_template.pricing',

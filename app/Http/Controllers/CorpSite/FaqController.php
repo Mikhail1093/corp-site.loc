@@ -5,6 +5,7 @@ namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
 use Nova\Http\Controllers\Controller;
+use Nova\Models\CorpSite\Question;
 
 /**
  * Class FaqController
@@ -21,7 +22,8 @@ class FaqController extends AppController
         $result = [];
         
         $result['menu'] = $this->getMainMenu();
-
+        $result['faq'] = Question::where('active', 1)->get()->toArray();
+        
         return view(
             'main_template.faq',
             [
