@@ -46,3 +46,5 @@ Route::get('/testing-models', 'CorpSite\TestingModelsController@execute');
 //todo personal cabinet
 
 Route::get('/intest', 'CorpSite\TestComt@execute')->middleware('intest');
+
+Route::get('/vk-sdk-test', 'CorpSite\PersonalCabinet\VkSdkTest@index');
