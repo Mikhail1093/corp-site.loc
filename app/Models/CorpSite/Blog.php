@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package Nova\Models\CorpSite
  *
+ * @method get()
+ * @method static where()
  * @method static find(mixed $key, array $columns = ['*']))
  */
 class Blog extends Model

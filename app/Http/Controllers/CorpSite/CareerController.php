@@ -25,7 +25,7 @@ class CareerController extends AppController
         return view(
             'main_template.career',
             [
-                'title'  => 'Карьерра',
+                'title'  => 'Карьера',
                 'result' => $result
             ]
         );
