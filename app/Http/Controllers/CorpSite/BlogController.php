@@ -87,6 +87,7 @@ class BlogController extends AppController
         $chain = view('main_template.nav_chain');
 
         //todo правый бар в отдельное представление
+        //todo правый бар в отдельное представление - топ 3 поста находить по рейтигу и метод расчета рейтинга
 
         return view(
             'main_template.blog_single',
@@ -96,6 +97,14 @@ class BlogController extends AppController
                 'navChain' => $chain
             ]
         );
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
+    public function saveComment(Request $request)
+    {
+        //todo
     }
 
     /**
