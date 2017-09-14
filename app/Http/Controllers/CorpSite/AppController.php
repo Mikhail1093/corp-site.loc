@@ -6,7 +6,7 @@ namespace Nova\Http\Controllers\CorpSite;
 use Nova\Models\CorpSite\MainMenu;
 use \Nova\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\Route;
-
+//todo вынести постовряющиеся методы типа рультата зеленого title
 /**
  * Class AppController
  *

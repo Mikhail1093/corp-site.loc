@@ -6,8 +6,7 @@ namespace Nova\Http\Controllers\CorpSite;
 use Illuminate\Http\Request;
 use Nova\Http\Controllers\Controller;
 use Nova\Models\CorpSite\{
-    Blog,
-    BlogCatigorie
+    Blog, BlogCatigorie, Partner
 };
 
 /**
@@ -17,6 +16,11 @@ use Nova\Models\CorpSite\{
  */
 class BlogController extends AppController
 {
+    /**
+     * @const string
+     */
+    const BLOG_LOST_TITLE = 'Блог';
+
     /**
      *
      */
@@ -44,67 +48,29 @@ class BlogController extends AppController
 
         dump($result['posts']);
 
-        //todo правый бар в отдельное представление
+        $rightBarResult['categories'] = $this->getCategories();
+        $rightBarResult['tagCloud'] = $this->getTagsCloud();
+
+        $chainResult['page_name'] = self::BLOG_LOST_TITLE;
+
+        $chain = view(
+            'main_template.nav_chain',
+            [
+                'chainResult' => $chainResult
+            ]
+        );
+
+        $rightBar = view('main_template.right_bar', $rightBarResult);
 
         return view(
             'main_template.blog_list',
             [
-                'title'  => 'Блог',
-                'result' => $result
-            ]
-        );
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function single(Request $request)
-    {
-        $result = [];
-
-        $post = Blog::where('code', $request->code)->get();
-
-        //todo если app_deug = true, то писать трейс
-        if (0 === count($post)) {
-            abort(404);
-        }
-
-        $post->load(
-            [
-                'user',
-                'blogCatigorie',
-                'comment'
-            ]
-        );
-
-        $result['menu'] = $this->getMainMenu();
-        $result['post'] = $post->toArray()[0];
-        dump($result);
-        dump($this->getCategories());
-        dump($this->getTagsCloud());
-        $chain = view('main_template.nav_chain');
-
-        //todo правый бар в отдельное представление
-        //todo правый бар в отдельное представление - топ 3 поста находить по рейтигу и метод расчета рейтинга
-
-        return view(
-            'main_template.blog_single',
-            [
-                'title'    => 'Блог',
+                'title'    => self::BLOG_LOST_TITLE,
                 'result'   => $result,
-                'navChain' => $chain
+                'navChain' => $chain,
+                'rightBar' => $rightBar
             ]
         );
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     */
-    public function saveComment(Request $request)
-    {
-        //todo
     }
 
     /**
@@ -122,7 +88,7 @@ class BlogController extends AppController
      */
     private function getTagsCloud()
     {
-        //todo blod в константы
+        //todo blog в константы
         $allTags = \DB::table('blog')->select('tags')->distinct()->get()->toArray();
 
         $tagsResult = [];
@@ -138,5 +104,75 @@ class BlogController extends AppController
         $tagsResult = array_unique($tagsResult);
 
         return $tagsResult;
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function single(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            return $this->saveComment($request);
+        } else {
+            $result = [];
+
+            $post = Blog::where('code', $request->code)->get();
+
+            //todo если app_deug = true, то писать трейс
+            if (0 === count($post)) {
+                abort(404);
+            }
+
+            $post->load(
+                [
+                    'user',
+                    'blogCatigorie',
+                    'comment'
+                ]
+            );
+
+            $result['menu'] = $this->getMainMenu();
+            $result['post'] = $post->toArray()[0];
+            dump($result);
+            $rightBarResult['categories'] = $this->getCategories();
+            $rightBarResult['tagCloud'] = $this->getTagsCloud();
+
+            $chainResult['page_name'] = $result['post']['name'];
+
+            $chain = view(
+                'main_template.nav_chain',
+                [
+                    'chainResult' => $chainResult
+                ]
+            );
+
+            $rightBar = view('main_template.right_bar', $rightBarResult);
+
+            //todo правый бар в отдельное представление - топ 3 поста находить по рейтигу и метод расчета рейтинга
+
+            return view(
+                'main_template.blog_single',
+                [
+                    'title'    => 'Блог',
+                    'result'   => $result,
+                    'navChain' => $chain,
+                    'rightBar' => $rightBar,
+                    'token'    => csrf_token()
+                ]
+            );
+        }
+
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
+    public function saveComment(Request $request)
+    {
+        //todo верстка формы через forms & html
+        //todo валидация через laravel validate
+        var_dump($request->input());
     }
 }
