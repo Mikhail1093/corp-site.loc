@@ -117,7 +117,7 @@ class BlogController extends AppController
      */
     public function single(Request $request)
     {
-        dump(session()->all());
+        //dump(session()->all());
         if (null !== session('errors')) {
             dump(session('errors')->toArray());
         }
