@@ -152,7 +152,7 @@
     <!--Modal Body-->
     <div class="modal-body">
         <form class="form-inline" action="/login" method="post" id="form-login">
-            {{ Form::token() }}
+            {{ csrf_field() }}
             <input type="text" name="email" class="input-small" placeholder="Email">
             <input type="password" name="password" class="input-small" placeholder="Password">
             <label class="checkbox">

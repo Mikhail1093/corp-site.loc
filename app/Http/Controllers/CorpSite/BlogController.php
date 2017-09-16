@@ -232,8 +232,7 @@ class BlogController extends AppController
 
         //todo проверка, если неудачно записалось
         return back()->with([
-            'comment_add_success' => 'Ваш комментарий добавлен. После модерации' .
-                ' администратором он появится.'
+            'comment_add_success' => trans('blog.comment_add_success')
         ]);
     }
 }

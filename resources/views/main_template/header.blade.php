@@ -50,7 +50,7 @@ declare(strict_types = 1);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a id="logo" class="pull-left" href="index.html"></a>
+            <a id="logo" class="pull-left" href="/"></a>
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
                     @foreach((array)$result['menu'] as $item)

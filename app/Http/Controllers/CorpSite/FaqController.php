@@ -23,6 +23,7 @@ class FaqController extends AppController
         
         $result['menu'] = $this->getMainMenu();
         $result['faq'] = Question::where('active', 1)->get()->toArray();
+        dump($result);
         
         return view(
             'main_template.faq',
