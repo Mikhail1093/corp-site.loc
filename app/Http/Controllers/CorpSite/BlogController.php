@@ -5,9 +5,13 @@ namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
 use Nova\Http\Controllers\Controller;
+use Nova\Http\Requests\CommentValidate;
 use Nova\Models\CorpSite\{
-    Blog, BlogCatigorie, Partner
+    Blog,
+    BlogCatigorie,
+    Comment
 };
+
 
 /**
  * Class BlogController
@@ -113,6 +117,11 @@ class BlogController extends AppController
      */
     public function single(Request $request)
     {
+        dump(session()->all());
+        if (null !== session('errors')) {
+            dump(session('errors')->toArray());
+        }
+
         if ($request->isMethod('POST')) {
             return $this->saveComment($request);
         } else {
@@ -135,7 +144,7 @@ class BlogController extends AppController
 
             $result['menu'] = $this->getMainMenu();
             $result['post'] = $post->toArray()[0];
-            dump($result);
+            //dump($result);
             $rightBarResult['categories'] = $this->getCategories();
             $rightBarResult['tagCloud'] = $this->getTagsCloud();
 
@@ -159,20 +168,72 @@ class BlogController extends AppController
                     'result'   => $result,
                     'navChain' => $chain,
                     'rightBar' => $rightBar,
-                    'token'    => csrf_token()
+                    'token'    => session('_token')
                 ]
             );
         }
-
     }
 
     /**
      * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveComment(Request $request)
+    public function saveComment(Request $request) //Через фильтр CommentValidate
     {
         //todo верстка формы через forms & html
         //todo валидация через laravel validate
-        var_dump($request->input());
+
+        /*$validator = Validator::make(
+            ['name' => $request->input('name')],
+            ['name' => ['min:5']]
+        );
+        dump($validator);
+        */
+
+        $this->validate(
+            $request,
+            [
+                'email'   => 'email',
+                'name'    => 'required',
+                'message' => 'required'
+            ],
+            [
+                'Некорректно введен email',
+                'Имя не заполненно',
+                'Поле сообщение не заполненно'
+            ]
+        );
+
+        $comment = Comment::create(
+            [
+                //todo 'name'    => $request->input('name'),
+                'text'    => $request->input('message'),
+                'user_id' => 2,
+                'active'  => 0,
+                'blog_id' => 1
+            ]
+        );
+
+        //todo заменрить сколько где больше запросов и что дольше выполняется
+        /*
+         * Созхранение черех присвоение свойств
+         */
+        //==========================================
+        /*$comment = new Comment();
+         $comment->text = $request->input('message');
+         $comment->user_id = 2;
+         $comment->active = 0;
+         $comment->blog_id = 1;
+
+         $comment->save();*/
+        //==========================================
+        dump($request->input());
+
+        //todo проверка, если неудачно записалось
+        return back()->with([
+            'comment_add_success' => 'Ваш комментарий добавлен. После модерации' .
+                ' администратором он появится.'
+        ]);
     }
 }

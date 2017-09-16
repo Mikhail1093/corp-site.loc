@@ -115,7 +115,7 @@ declare(strict_types = 1);
                                                placeholder="Name"/>
                                     </div>
                                     <div class="span4">
-                                        <input type="email" name="email" required="required" class="input-block-level"
+                                        <input type="text" name="email" required="required" class="input-block-level"
                                                placeholder="Email"/>
                                     </div>
                                     <div class="span4">
