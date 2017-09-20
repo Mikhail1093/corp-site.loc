@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
+use Nova\Models\CorpSite\ContactFeedBack;
 
 /**
  * Class ContactController
@@ -32,6 +33,12 @@ class ContactController extends AppController
      */
     public function showFormPage()
     {
+        //dump(session('feed_back_message_success'));
+
+        if (null !== session('errors')) {
+            dump(session('errors')->toArray());
+        }
+
         $result = [];
         $result['menu'] = $this->getMainMenu();
 
@@ -39,6 +46,7 @@ class ContactController extends AppController
             'main_template.contact',
             [
                 'title'  => 'Наши контакты',
+                'token'  => session('_token'),
                 'result' => $result
             ]
         );
@@ -46,8 +54,36 @@ class ContactController extends AppController
 
     /**
      * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function saveFeedBack(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'first_name' => 'required|min:2',
+                'last_name'  => 'required|min:2',
+                'email'      => 'required|email',
+                'message'    => 'required'
+            ]
+        );
+
+        ContactFeedBack::create(
+            [
+                'active'     => 1,
+                'user_id'    => 2, //todo for tests
+                'first_name' => $request->input('first_name'),
+                'last_name'  => $request->input('last_name'),
+                'email'      => $request->input('email'),
+                'message'    => $request->input('message')
+            ]
+        );
+
+        return back()->with(
+            [
+                'feed_back_message_success' => trans('blog.feed_back_message_success')
+            ]
+        );
     }
 }

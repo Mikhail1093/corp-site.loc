@@ -11,15 +11,16 @@
             <h4>Contact Form</h4>
             <div class="status alert alert-success" style="display: none"></div>
 
-            <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+            <form id="main-contact-form" name="contact-form" method="post" action="/contact">
                 <div class="row-fluid">
                     <div class="span5">
+                        <input type="hidden" name="_token" value="{{ $token }}">
                         <label>First Name</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your First Name">
+                        <input name="first_name" type="text" class="input-block-level" required="required" placeholder="Your First Name">
                         <label>Last Name</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your Last Name">
+                        <input name="last_name" type="text" class="input-block-level" required="required" placeholder="Your Last Name">
                         <label>Email Address</label>
-                        <input type="text" class="input-block-level" required="required" placeholder="Your email address">
+                        <input name="email" type="text" class="input-block-level" required="required" placeholder="Your email address">
                     </div>
                     <div class="span7">
                         <label>Message</label>
@@ -27,10 +28,11 @@
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-primary btn-large pull-right">Send Message</button>
+                <input type="submit" value="Send Message" class="btn btn-primary btn-large pull-right">
                 <p> </p>
 
             </form>
+
         </div>
 
         <div class="span3">
