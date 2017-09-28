@@ -15,4 +15,6 @@ class Team extends Model
      * @var string
      */
     protected $table = 'team';
+
+    //todo fillible
 }

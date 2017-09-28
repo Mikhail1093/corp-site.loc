@@ -16,5 +16,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Question extends Model
 {
-    //
+    ////todo fillible
 }

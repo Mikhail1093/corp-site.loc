@@ -32,6 +32,7 @@ class AboutUsController extends AppController
         $result['our_services'] = OurService::where('active', 1)->get()->toArray();
 
         dump($result);
+        
 
         return view(
             'main_template.about_us',

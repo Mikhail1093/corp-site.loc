@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static find(mixed $key, array $columns = ['*']))
  * @method static create(array $fields)
  */
-
+//todo doc method
 /** @noinspection ClassOverridesFieldOfSuperClassInspection */
 class ContactFeedBack extends Model
 {

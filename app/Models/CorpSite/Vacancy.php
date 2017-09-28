@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vacancy extends Model
 {
+    //todo fillible
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

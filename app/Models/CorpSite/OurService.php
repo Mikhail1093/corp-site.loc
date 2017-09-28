@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method static find(mixed $key, array $columns = ['*']))
  */
+//todo doc method and fillible
 class OurService extends Model
 {
     //

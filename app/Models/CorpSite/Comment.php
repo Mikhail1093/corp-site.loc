@@ -10,9 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package Nova\Models\CorpSite
  *
+ * @method paginate(int $count)
  * @method static find(mixed $key, array $columns = ['*']))
  * @method static create(array $fields)
  */
+//todo doc method
 class Comment extends Model
 {
     /**

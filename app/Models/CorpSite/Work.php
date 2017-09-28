@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static where(mixed $key, mixed $value)
  * @method static find(mixed $key, array $columns = ['*']))
  */
+//todo doc method and fillible
 class Work extends Model
 {
     //

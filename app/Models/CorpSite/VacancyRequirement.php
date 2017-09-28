@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VacancyRequirement extends Model
 {
+    //todo doc method and fillible
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

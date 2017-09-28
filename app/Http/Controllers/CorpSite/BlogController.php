@@ -46,6 +46,7 @@ class BlogController extends AppController
 
         $result['posts'] = $posts->toArray()['data'];
 
+        //todo как получить количесвто коментов проще
         array_walk($result['posts'], function (&$item) {
             $item['comment'] = count($item['comment']);
         });
@@ -92,8 +93,9 @@ class BlogController extends AppController
      */
     private function getTagsCloud()
     {
-        //todo blog в константы
-        $allTags = \DB::table('blog')->select('tags')->distinct()->get()->toArray();
+        $blog = new Blog();
+
+        $allTags = \DB::table($blog->getTable())->select('tags')->distinct()->get()->toArray();
 
         $tagsResult = [];
 
@@ -144,7 +146,7 @@ class BlogController extends AppController
 
             $result['menu'] = $this->getMainMenu();
             $result['post'] = $post->toArray()[0];
-            //dump($result);
+
             $rightBarResult['categories'] = $this->getCategories();
             $rightBarResult['tagCloud'] = $this->getTagsCloud();
 

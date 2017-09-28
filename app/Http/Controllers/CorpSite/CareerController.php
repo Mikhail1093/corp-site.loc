@@ -30,7 +30,7 @@ class CareerController extends AppController
         $result = [];
 
         $result['menu'] = $this->getMainMenu();
-        $vacancies = Vacancy::where('active', 1)->get();
+        $vacancies = Vacancy::where(['active' => 1])->get();
         $vacancies->load('vacancyRequirement');
 
         $result['vacancy'] = $vacancies->toArray();
