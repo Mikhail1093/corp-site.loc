@@ -5,45 +5,22 @@
 
         <!--Slider Items-->
         <div class="sl-slider">
-            <!--Slider Item1-->
-            <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-                <div class="sl-slide-inner">
-                    <div class="container">
-                        <img class="pull-right" src="/public/images/sample/slider/img1.png" alt="" />
-                        <h2>Creative Ideas</h2>
-                        <h3 class="gap">Tincidunt condimentum eros</h3>
-                        <a class="btn btn-large btn-transparent" href="#">Learn More</a>
+            @foreach((array)$result['slider'] as $slide)
+                <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="-25"
+                     data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                    <div class="sl-slide-inner">
+                        <div style="width: 100%">
+                            <img style="height: 100%" class="pull-right" src="{{ $slide['image'] }}"
+                                 alt=""/>
+                            <div style="position: absolute; margin-left: 10%">
+                                <h2>{{ $slide['title'] }}</h2>
+                                <h3 class="gap">{{ $slide['slogan'] }}</h3>
+                                <a class="btn btn-large btn-transparent" href="#">Learn More</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--/Slider Item1-->
-
-            <!--Slider Item2-->
-            <div class="sl-slide item2" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-                <div class="sl-slide-inner">
-                    <div class="container">
-                        <img class="pull-right" src="/public/images/sample/slider/img2.png" alt="" />
-                        <h2>Planning &amp; Analysis</h2>
-                        <h3 class="gap">Aenean ultricies mi vitast</h3>
-                        <a class="btn btn-large btn-transparent" href="#">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <!--Slider Item2-->
-
-            <!--Slider Item3-->
-            <div class="sl-slide item3" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-                <div class="sl-slide-inner">
-                    <div class="container">
-                        <img class="pull-right" src="/public/images/sample/slider/img3.png" alt="" />
-                        <h2>Unique Solutions</h2>
-                        <h3 class="gap">Breatures who have been utterly</h3>
-                        <a class="btn btn-large btn-transparent" href="#">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <!--Slider Item3-->
-
+            @endforeach
         </div>
         <!--/Slider Items-->
 
@@ -64,7 +41,8 @@
         <div class="row-fluid">
             <div class="span9">
                 <h4>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</h4>
-                <p class="no-margin">Tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet</p>
+                <p class="no-margin">Tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
+                    quam, feugiat vitae, ultricies eget, tempor sit amet</p>
             </div>
             <div class="span3">
                 <a class="btn btn-success btn-large pull-right" href="http://shapebootstrap.net">Free Download Nova</a>
@@ -89,7 +67,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Web Design</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                            leo.</p>
                     </div>
                 </div>
             </div>
@@ -101,7 +82,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Graphic Design</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                            leo.</p>
                     </div>
                 </div>
             </div>
@@ -113,7 +97,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Email Marketing</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                            leo.</p>
                     </div>
                 </div>
             </div>
@@ -129,7 +116,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Ecommerce Solution</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                            leo.</p>
                     </div>
                 </div>
             </div>
@@ -141,7 +131,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">SEO &amp; Solution</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                            leo.</p>
                     </div>
                 </div>
             </div>
@@ -153,7 +146,10 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Bootstrap</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                            leo.</p>
                     </div>
                 </div>
             </div>
@@ -178,16 +174,19 @@
                     <div class="overlay">
                     </div>
                     <div class="links">
-                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i
+                                    class="icon-link"></i></a>
                     </div>
                 </div>
                 <div class="desc">
                     <h5>Lorem ipsum dolor sit amet</h5>
                 </div>
                 <div id="modal-1" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
+                                class="icon-remove"></i></a>
                     <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item1.jpg" alt=" " width="100%" style="max-height:400px">
+                        <img src="/public/images/portfolio/full/item1.jpg" alt=" " width="100%"
+                             style="max-height:400px">
                     </div>
                 </div>
             </li>
@@ -200,16 +199,19 @@
                     <div class="overlay">
                     </div>
                     <div class="links">
-                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i
+                                    class="icon-link"></i></a>
                     </div>
                 </div>
                 <div class="desc">
                     <h5>Lorem ipsum dolor sit amet</h5>
                 </div>
                 <div id="modal-1" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
+                                class="icon-remove"></i></a>
                     <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item2.jpg" alt=" " width="100%" style="max-height:400px">
+                        <img src="/public/images/portfolio/full/item2.jpg" alt=" " width="100%"
+                             style="max-height:400px">
                     </div>
                 </div>
             </li>
@@ -222,16 +224,19 @@
                     <div class="overlay">
                     </div>
                     <div class="links">
-                        <a data-toggle="modal" href="#modal-3"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                        <a data-toggle="modal" href="#modal-3"><i class="icon-eye-open"></i></a><a href="#"><i
+                                    class="icon-link"></i></a>
                     </div>
                 </div>
                 <div class="desc">
                     <h5>Lorem ipsum dolor sit amet</h5>
                 </div>
                 <div id="modal-3" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
+                                class="icon-remove"></i></a>
                     <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item3.jpg" alt=" " width="100%" style="max-height:400px">
+                        <img src="/public/images/portfolio/full/item3.jpg" alt=" " width="100%"
+                             style="max-height:400px">
                     </div>
                 </div>
             </li>
@@ -244,16 +249,19 @@
                     <div class="overlay">
                     </div>
                     <div class="links">
-                        <a data-toggle="modal" href="#modal-4"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>
+                        <a data-toggle="modal" href="#modal-4"><i class="icon-eye-open"></i></a><a href="#"><i
+                                    class="icon-link"></i></a>
                     </div>
                 </div>
                 <div class="desc">
                     <h5>Lorem ipsum dolor sit amet</h5>
                 </div>
                 <div id="modal-4" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
+                                class="icon-remove"></i></a>
                     <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item4.jpg" alt=" " width="100%" style="max-height:400px">
+                        <img src="/public/images/portfolio/full/item4.jpg" alt=" " width="100%"
+                             style="max-height:400px">
                     </div>
                 </div>
             </li>
@@ -271,7 +279,8 @@
                 <div class="clearfix">
                     <h4 class="pull-left">OUR PARTNERS</h4>
                     <div class="pull-right">
-                        <a class="prev" href="#myCarousel" data-slide="prev"><i class="icon-angle-left icon-large"></i></a> <a class="next" href="#myCarousel" data-slide="next"><i class="icon-angle-right icon-large"></i></a>
+                        <a class="prev" href="#myCarousel" data-slide="prev"><i class="icon-angle-left icon-large"></i></a>
+                        <a class="next" href="#myCarousel" data-slide="next"><i class="icon-angle-right icon-large"></i></a>
                     </div>
                 </div>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -283,10 +292,14 @@
                         <div class="active item">
                             <div class="row-fluid">
                                 <ul class="thumbnails">
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a></li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -294,10 +307,14 @@
                         <div class="item">
                             <div class="row-fluid">
                                 <ul class="thumbnails">
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a></li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -305,10 +322,14 @@
                         <div class="item">
                             <div class="row-fluid">
                                 <ul class="thumbnails">
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a></li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a></li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a>
+                                    </li>
+                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

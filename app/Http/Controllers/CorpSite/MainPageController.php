@@ -9,6 +9,7 @@ use Nova\Models\CorpSite\{
     Work,
     Partner
 };
+
 /**
  * Class MainPageController
  *
@@ -33,7 +34,9 @@ class MainPageController extends AppController
         $result['offers'] = Offer::where('active', 1)->get()->toArray();
         $result['works'] = Work::where(['active' => 1, 'show_on_main_page' => 1])->get()->toArray();
         $result['partners'] = Partner::where('active', 1)->get()->toArray();
-        
+
+        //файлы должны быть в storage и пути к ним через storage_path();
+
         return view(
             'main_template.index',
             [
