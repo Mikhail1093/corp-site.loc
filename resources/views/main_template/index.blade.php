@@ -59,101 +59,26 @@
             <p class="lead">Look at some of the recent projects we have completed for our valuble clients</p>
         </div>
 
-        <div class="row-fluid">
-            <div class="span4">
-                <div class="media">
-                    <div class="pull-left">
-                        <i class="icon-globe icon-medium"></i>
+        @foreach((array)$result['offers'] as $offersRow)
+            <div class="row-fluid">
+                @foreach((array)$offersRow as $offer)
+                    <div class="span4">
+                        <div class="media">
+                            <div class="pull-left">
+                                <i class="{{ $offer['icon'] }} icon-medium"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ $offer['name'] }}</h4>
+                                <p>{{ $offer['text'] }}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Web Design</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
-            <div class="span4">
-                <div class="media">
-                    <div class="pull-left">
-                        <i class="icon-thumbs-up-alt icon-medium"></i>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Graphic Design</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="gap"></div>
+        @endforeach
 
-            <div class="span4">
-                <div class="media">
-                    <div class="pull-left">
-                        <i class="icon-leaf icon-medium icon-rounded"></i>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Email Marketing</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="gap"></div>
-
-        <div class="row-fluid">
-            <div class="span4">
-                <div class="media">
-                    <div class="pull-left">
-                        <i class="icon-shopping-cart icon-medium"></i>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Ecommerce Solution</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="span4">
-                <div class="media">
-                    <div class="pull-left">
-                        <i class="icon-globe icon-medium"></i>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">SEO &amp; Solution</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="span4">
-                <div class="media">
-                    <div class="pull-left">
-                        <i class="icon-globe icon-medium"></i>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Bootstrap</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </section>
@@ -167,30 +92,35 @@
         </div>
         <div class="gap"></div>
         <ul class="gallery col-4">
-            <!--Item 1-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="/public/images/portfolio/thumb/item1.jpg">
-                    <div class="overlay">
+
+            @foreach((array)$result['works'] as $work)
+                <li>
+                    <div class="preview">
+                        <img alt=" " src="{{ $work['image'] }}">
+                        <div class="overlay">
+                        </div>
+                        <div class="links">
+                            <a data-toggle="modal" href="#modal-{{ $work['id'] }}"><i class="icon-eye-open"></i></a>
+                            <a href="#"><i
+                                        class="icon-link"></i></a>
+                        </div>
                     </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i
-                                    class="icon-link"></i></a>
+                    <div class="desc">
+                        <h5>{{ $work['name'] }}</h5>
                     </div>
-                </div>
-                <div class="desc">
-                    <h5>Lorem ipsum dolor sit amet</h5>
-                </div>
-                <div id="modal-1" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
-                                class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item1.jpg" alt=" " width="100%"
-                             style="max-height:400px">
+                    <div id="modal-{{ $work['id'] }}" class="modal hide fade">
+                        <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
+                                    class="icon-remove"></i></a>
+                        <div class="modal-body">
+                            <img src="{{ $work['detail_picture'] }}" alt=" " width="100%"
+                                 style="max-height:400px">
+                        </div>
                     </div>
-                </div>
-            </li>
-            <!--/Item 1-->
+                </li>
+            @endforeach
+
+
+        <!--/Item 1-->
 
             <!--Item 2-->
             <li>
