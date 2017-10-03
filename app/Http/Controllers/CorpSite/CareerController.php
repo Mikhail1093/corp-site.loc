@@ -33,7 +33,7 @@ class CareerController extends AppController
         $vacancies = Vacancy::where(['active' => 1])->get();
         $vacancies->load('vacancyRequirement');
 
-        $result['vacancy'] = $vacancies->toArray();
+        $result['vacancy'] = array_chunk($vacancies->toArray(), 2);
         dump($result);
 
         $chainResult['page_name'] = self::CAREER_TITLE;
