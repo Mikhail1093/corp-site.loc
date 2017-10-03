@@ -34,12 +34,10 @@ class PricingController extends AppController
             }
         });
 
-        dump($result);
-
         return view(
             'main_template.pricing',
             [
-                'title'  => 'FAQ',
+                'title'  => 'Цены',
                 'result' => $result
             ]
         );
