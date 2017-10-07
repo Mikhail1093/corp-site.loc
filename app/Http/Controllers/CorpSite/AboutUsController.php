@@ -26,7 +26,10 @@ class AboutUsController extends AppController
     {
         $result = [];
 
-        $result['menu'] = $this->getMainMenu();
+        $menu = $this->getMainMenu();
+        //todo оптимизировать в единый метод получения родительского класса
+        $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
+        $result['menu'] = $menu;
         $result['our_skills'] = Skill::where('active', 1)->get()->toArray();
         $result['team'] = Team::where('active', 1)->get()->toArray();
         $result['our_services'] = OurService::where('active', 1)->get()->toArray();

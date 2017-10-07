@@ -30,12 +30,13 @@ class MainPageController extends AppController
 
         $menu = $this->getMainMenu();
         //todo оптимизировать в единый метод получения родительского класса
+        $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
         $result['menu'] = $menu;
+
         $result['slider'] = Slide::where('active', 1)->get()->toArray();
         $result['offers'] = array_chunk(Offer::where('active', 1)->get()->toArray(), 3);
         $result['works'] = Work::where(['active' => 1, 'show_on_main_page' => 1])->get()->toArray();
         $result['partners'] = Partner::where('active', 1)->get()->toArray();
-        $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
 
 
         //файлы должны быть в storage и пути к ним через storage_path();

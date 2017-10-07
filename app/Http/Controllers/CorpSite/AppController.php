@@ -35,7 +35,6 @@ class AppController extends Controller
      */
     protected function getFooterListView(array $data = [], string $blockId = 'twits', string $title = 'title')
     {
-        dump($data);
         return view(
             'main_template.sections.footer_list',
             [

@@ -5,33 +5,29 @@
     <div class="row-fluid">
         <div class="span8">
             <div class="blog">
-                <div class="blog-item well">
-                    <a href="#"><h2>Duis sed odio sit amet nibh vulputate cursus</h2></a>
-                    <div class="blog-meta clearfix">
-                        <p class="pull-left">
-                            <i class="icon-user"></i> by <a href="#">John</a> | <i class="icon-folder-close"></i> Category <a href="#">Bootstrap</a> | <i class="icon-calendar"></i> Sept 16th, 2012
-                        </p>
-                        <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">3 Comments</a></p>
-                    </div>
-                    <p><img src="images/sample/blog1.jpg" width="100%" alt="" /></p>
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                    <a class="btn btn-link" href="#">Read More <i class="icon-angle-right"></i></a>
-                </div>
-                <!-- End Blog Item -->
-
-                <div class="blog-item well">
-                    <a href="#"><h2>Duis sed odio sit amet nibh vulputate cursus a sit</h2></a>
-                    <div class="blog-meta clearfix">
-                        <p class="pull-left">
-                            <i class="icon-user"></i> by <a href="#">John</a> | <i class="icon-folder-close"></i> Category <a href="#">Bootstrap</a> | <i class="icon-calendar"></i> Sept 16th, 2012
-                        </p>
-                        <p class="pull-right"><i class="icon-comment pull"></i> <a href="blog-item.html#comments">3 Comments</a></p>
-                    </div>
-                    <p><img src="images/sample/blog1.jpg" width="100%" alt="" /></p>
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-
-                    <a class="btn btn-link" href="#">Read More <i class="icon-angle-right"></i></a>
-                </div>
+                @if(count($result['posts']) > 0)
+                    @foreach((array)$result['posts'] as $post)
+                        <div class="blog-item well">
+                            <a href="{{ route('blog_single', [$post['code']], false)  }}">
+                                <h2>{{ $post['name'] }}</h2>
+                            </a>
+                            <div class="blog-meta clearfix">
+                                <p class="pull-left">
+                                    <i class="icon-user"></i> by <a href="#">{{ $post['user']['name'] }}</a> | <i class="icon-folder-close"></i>
+                                    Category <a href="#">{{ $post['blog_catigorie']['name'] }}
+                                    </a> | <i class="icon-calendar"></i> {{ $post['created_at'] }}
+                                </p>
+                                <p class="pull-right"><i class="icon-comment pull"></i>
+                                    <a href="blog-item.html#comments">
+                                        {{ $post['comment'] }} {{ trans_choice('blog.comment', $post['comment']) }}
+                                    </a></p>
+                            </div>
+                            <p><img src="{{ $post['preview_picture'] }}" width="100%" alt=""/></p>
+                            <p>{{ $post['preview_text'] }}</p>
+                            <a class="btn btn-link" href="#">{{ trans('blog.read_more ') }}<i class="icon-angle-right"></i></a>
+                        </div>
+                    @endforeach
+                @endif
                 <!-- End Blog Item -->
 
                 <div class="gap"></div>
@@ -131,32 +127,56 @@
                 <div class="row-fluid first">
                     <ul class="thumbnails">
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829540293/" title="01 (254) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7003/6829540293_bd99363818_s.jpg" width="75" height="75" alt="01 (254)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829540293/"
+                               title="01 (254) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7003/6829540293_bd99363818_s.jpg" width="75"
+                                        height="75" alt="01 (254)"></a>
                         </li>
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829537417/" title="01 (196) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7013/6829537417_465d28e1db_s.jpg" width="75" height="75" alt="01 (196)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829537417/"
+                               title="01 (196) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7013/6829537417_465d28e1db_s.jpg" width="75"
+                                        height="75" alt="01 (196)"></a>
                         </li>
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829527437/" title="01 (65) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7021/6829527437_88364c7ec4_s.jpg" width="75" height="75" alt="01 (65)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829527437/"
+                               title="01 (65) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7021/6829527437_88364c7ec4_s.jpg" width="75"
+                                        height="75" alt="01 (65)"></a>
                         </li>
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829524451/" title="01 (6) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7148/6829524451_a725793358_s.jpg" width="75" height="75" alt="01 (6)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829524451/"
+                               title="01 (6) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7148/6829524451_a725793358_s.jpg" width="75"
+                                        height="75" alt="01 (6)"></a>
                         </li>
                     </ul>
                 </div>
                 <div class="row-fluid">
                     <ul class="thumbnails">
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829524451/" title="01 (6) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7148/6829524451_a725793358_s.jpg" width="75" height="75" alt="01 (6)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829524451/"
+                               title="01 (6) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7148/6829524451_a725793358_s.jpg" width="75"
+                                        height="75" alt="01 (6)"></a>
                         </li>
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829540293/" title="01 (254) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7003/6829540293_bd99363818_s.jpg" width="75" height="75" alt="01 (254)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829540293/"
+                               title="01 (254) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7003/6829540293_bd99363818_s.jpg" width="75"
+                                        height="75" alt="01 (254)"></a>
                         </li>
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829537417/" title="01 (196) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7013/6829537417_465d28e1db_s.jpg" width="75" height="75" alt="01 (196)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829537417/"
+                               title="01 (196) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7013/6829537417_465d28e1db_s.jpg" width="75"
+                                        height="75" alt="01 (196)"></a>
                         </li>
                         <li class="span3">
-                            <a href="http://www.flickr.com/photos/76029035@N02/6829527437/" title="01 (65) by Victor1558, on Flickr"><img src="http://farm8.staticflickr.com/7021/6829527437_88364c7ec4_s.jpg" width="75" height="75" alt="01 (65)"></a>
+                            <a href="http://www.flickr.com/photos/76029035@N02/6829527437/"
+                               title="01 (65) by Victor1558, on Flickr"><img
+                                        src="http://farm8.staticflickr.com/7021/6829527437_88364c7ec4_s.jpg" width="75"
+                                        height="75" alt="01 (65)"></a>
                         </li>
                     </ul>
                 </div>

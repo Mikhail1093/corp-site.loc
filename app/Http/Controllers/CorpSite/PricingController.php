@@ -22,7 +22,10 @@ class PricingController extends AppController
     {
         $result = [];
 
-        $result['menu'] = $this->getMainMenu();
+        $menu = $this->getMainMenu();
+        //todo оптимизировать в единый метод получения родительского класса
+        $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
+        $result['menu'] = $menu;
         $result['pricing'] = Tariff::where('active', 1)->get()->toArray();
 
         // парсим json из БД

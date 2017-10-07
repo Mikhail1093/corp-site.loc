@@ -32,7 +32,10 @@ class BlogController extends AppController
     {
         $result = [];
 
-        $result['menu'] = $this->getMainMenu();
+        $menu = $this->getMainMenu();
+        //todo оптимизировать в единый метод получения родительского класса
+        $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
+        $result['menu'] = $menu;
 
         $posts = Blog::where('active', 1)->paginate(3);
 
@@ -49,6 +52,7 @@ class BlogController extends AppController
         //todo как получить количесвто коментов проще
         array_walk($result['posts'], function (&$item) {
             $item['comment'] = count($item['comment']);
+            $item['created_at'] = date('M j, Y', (int)strtotime($item['created_at']));
         });
 
         dump($result['posts']);
@@ -144,7 +148,10 @@ class BlogController extends AppController
                 ]
             );
 
-            $result['menu'] = $this->getMainMenu();
+            $menu = $this->getMainMenu();
+            //todo оптимизировать в единый метод получения родительского класса
+            $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
+            $result['menu'] = $menu;
             $result['post'] = $post->toArray()[0];
 
             $rightBarResult['categories'] = $this->getCategories();
