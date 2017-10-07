@@ -25,6 +25,28 @@ class AppController extends Controller
     }
 
     /**
+     * Получить представление для списка в footer главного шаблона
+     *
+     * @param string $blockId - id div
+     * @param string $title   - заголовок
+     * @param array  $data    - массив данных
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function getFooterListView(array $data = [], string $blockId = 'twits', string $title = 'title')
+    {
+        dump($data);
+        return view(
+            'main_template.sections.footer_list',
+            [
+                'block_id' => $blockId,
+                'title'    => $title,
+                'result'   => $data
+            ]
+        );
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     protected function getMainMenu()

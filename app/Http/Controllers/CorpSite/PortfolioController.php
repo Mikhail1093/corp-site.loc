@@ -23,12 +23,10 @@ class PortfolioController extends AppController
         $result['menu'] = $this->getMainMenu();
         $result['portfolio'] = Work::where('active', 1)->get()->toArray();
 
-        dump($result);
-
         return view(
             'main_template.portfolio',
             [
-                'title'  => 'Наши работы',
+                'title'  => 'Кейсы',
                 'result' => $result
             ]
         );

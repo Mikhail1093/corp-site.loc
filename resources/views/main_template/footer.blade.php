@@ -31,21 +31,7 @@
             <!--End Contact Form-->
 
             <!--Important Links-->
-            <div id="tweets" class="span3">
-                <h4>OUR COMPANY</h4>
-                <div>
-                    <ul class="arrow">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Copyright</a></li>
-                        <li><a href="#">We are hiring</a></li>
-                        <li><a href="#">Clients</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
+            {!! $result['footer_menu'] !!}
             <!--Important Links-->
 
             <!--Archives-->
