@@ -49,3 +49,6 @@ Route::get('/testing-models', 'CorpSite\TestingModelsController@execute');
 Route::get('/intest', 'CorpSite\TestComt@execute')->middleware('intest');
 
 Route::get('/vk-sdk-test', 'CorpSite\PersonalCabinet\VkSdkTest@index');
+
+Route::get('/test-ord-db', 'OrdersReports@index');
+Route::get('/test-ord-file', 'OrdersReports@index');

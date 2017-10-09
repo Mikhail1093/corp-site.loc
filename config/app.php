@@ -178,8 +178,8 @@ return [
         // Nova\Providers\BroadcastServiceProvider::class,
         Nova\Providers\EventServiceProvider::class,
         Nova\Providers\RouteServiceProvider::class,
-        Nova\Providers\CorpSite\TestProv::class
-
+        Nova\Providers\CorpSite\TestProv::class,
+        Nova\Providers\OrdersProvider::class
     ],
 
     /*
