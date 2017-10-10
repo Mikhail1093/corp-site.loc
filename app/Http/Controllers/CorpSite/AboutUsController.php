@@ -20,7 +20,7 @@ use Nova\Models\CorpSite\{
 class AboutUsController extends AppController
 {
     /**
-     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function execute()
     {
