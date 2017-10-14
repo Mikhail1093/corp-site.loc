@@ -48,9 +48,12 @@ class ContactController extends AppController
         return view(
             'main_template.contact',
             [
-                'title'  => 'Наши контакты',
-                'token'  => session('_token'),
-                'result' => $result
+                'title'                     => 'Наши контакты',
+                'token'                     => session('_token'),
+                'result'                    => $result,
+                'errors'                    => (null !== session('errors')) ? session('errors')->toArray() : [],
+                'feed_back_message_success' => (null !== session('feed_back_message_success')) ?
+                    session('feed_back_message_success') : ''
             ]
         );
     }
@@ -72,6 +75,7 @@ class ContactController extends AppController
             ]
         );
 
+        //todo если пользователь авторизирован, то подпихивать id, если нет , то гостевой id (погуглить)
         ContactFeedBack::create(
             [
                 'active'     => 1,

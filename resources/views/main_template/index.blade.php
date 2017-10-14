@@ -118,85 +118,6 @@
                     </div>
                 </li>
             @endforeach
-
-
-        <!--/Item 1-->
-
-            <!--Item 2-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="/public/images/portfolio/thumb/item2.jpg">
-                    <div class="overlay">
-                    </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i
-                                    class="icon-link"></i></a>
-                    </div>
-                </div>
-                <div class="desc">
-                    <h5>Lorem ipsum dolor sit amet</h5>
-                </div>
-                <div id="modal-1" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
-                                class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item2.jpg" alt=" " width="100%"
-                             style="max-height:400px">
-                    </div>
-                </div>
-            </li>
-            <!--/Item 2-->
-
-            <!--Item 3-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="/public/images/portfolio/thumb/item3.jpg">
-                    <div class="overlay">
-                    </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-3"><i class="icon-eye-open"></i></a><a href="#"><i
-                                    class="icon-link"></i></a>
-                    </div>
-                </div>
-                <div class="desc">
-                    <h5>Lorem ipsum dolor sit amet</h5>
-                </div>
-                <div id="modal-3" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
-                                class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item3.jpg" alt=" " width="100%"
-                             style="max-height:400px">
-                    </div>
-                </div>
-            </li>
-            <!--/Item 3-->
-
-            <!--Item 4-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="/public/images/portfolio/thumb/item4.jpg">
-                    <div class="overlay">
-                    </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-4"><i class="icon-eye-open"></i></a><a href="#"><i
-                                    class="icon-link"></i></a>
-                    </div>
-                </div>
-                <div class="desc">
-                    <h5>Lorem ipsum dolor sit amet</h5>
-                </div>
-                <div id="modal-4" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i
-                                class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="/public/images/portfolio/full/item4.jpg" alt=" " width="100%"
-                             style="max-height:400px">
-                    </div>
-                </div>
-            </li>
-            <!--/Item 4-->
-
         </ul>
     </div>
 
@@ -222,19 +143,18 @@
                         <div class="active item">
                             <div class="row-fluid">
                                 <ul class="thumbnails">
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client1.png"></a>
-                                    </li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client2.png"></a>
-                                    </li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client3.png"></a>
-                                    </li>
-                                    <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a>
-                                    </li>
+                                    @foreach((array)$result['partners'] as $partner)
+                                        <li class="span3">
+                                            <a href="#">
+                                                <img src="{{ $partner['image'] }}">
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="item">
+                        {{--<div class="item">
                             <div class="row-fluid">
                                 <ul class="thumbnails">
                                     <li class="span3"><a href="#"><img src="/public/images/sample/clients/client4.png"></a>
@@ -263,7 +183,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     <!-- /Carousel items -->
 
                 </div>

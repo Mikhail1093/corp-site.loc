@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('api')->get('/userGet', 'CorpSite\Api\Users@execute');
+
+
+//todo а надо подключать middleware('api') ??
+Route::middleware('api')->resource('news', 'CorpSite\Api\BlogApiController');
