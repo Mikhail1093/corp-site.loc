@@ -10,6 +10,7 @@ declare(strict_types = 1);
 namespace Nova\CorpSite\Api;
 
 use Illuminate\Database\Eloquent\Model;
+use Nova\Exceptions\IncorrectInputDataException;
 
 /**
  * Class ApiRepository
@@ -34,12 +35,15 @@ class ApiRepository implements RepositoryApiInterface
      * @param array $columns
      *
      * @return mixed
+     * @throws \Nova\Exceptions\IncorrectInputDataException
      */
-    public function getAll(array $columns)
+    public function getAll(array $columns = ['*'])
     {
-        // TODO: Implement getAll() method.
-        //dump($this->model::where('id', 1)->get()->toArray());
-        //dump($this->model->get()->toArray());
+        if (0 === count($columns)) {
+            throw new IncorrectInputDataException('Input array not must be empty');
+        }
+
+        return $this->model::where(self::ACTIVE_FILTER)->get($columns)->toArray();
     }
 
     /**

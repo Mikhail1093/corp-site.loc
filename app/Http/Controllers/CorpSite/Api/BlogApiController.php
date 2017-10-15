@@ -4,29 +4,52 @@ namespace Nova\Http\Controllers\CorpSite\Api;
 
 use Illuminate\Http\Request;
 use Nova\CorpSite\Api\ApiRepository;
+use Nova\Exceptions\IncorrectInputDataException;
 use Nova\Models\CorpSite\Blog;
 use Nova\Http\Controllers\CorpSite\AppController;
+use Nova\Models\CorpSite\Token;
 
 /**
  * Class BlogApiController
  *
  * @package Nova\Http\Controllers\CorpSite\Api
  */
-class BlogApiController extends AppController
+
+/** @noinspection LongInheritanceChainInspection */
+class BlogApiController extends AppApiController
 {
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blog = new ApiRepository(new Blog());
-        $blog->getAll([]);
-        die;
-        $posts = Blog::where('active', 1)->paginate(3);
+        try {
+            $this->checkApiKey($request['key']);
+            $blog = new ApiRepository(new Blog());
 
-        return response()->json($posts->toArray()['data']);
+            try {
+                $result['data'] = $blog->getAll();
+                $result['status'] = 200;
+
+                if (0 === count($result['data'])) {
+                    $result['status'] = 404;
+                }
+            } catch (IncorrectInputDataException $exception) {
+                //todo лог
+                $result['data'] = ['error' => $exception->getMessage()];
+                $result['status'] = 500; //todo подумать
+            }
+        } catch (IncorrectInputDataException $exception) {
+            //todo лог
+            $result['data'] = ['error' => $exception->getMessage()];
+            $result['status'] = $exception->getCode(); //todo подумать
+        }
+
+        return response()->json($result['data'], $result['status']);
     }
 
     /**

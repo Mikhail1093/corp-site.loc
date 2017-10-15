@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 interface RepositoryApiInterface
 {
     /**
+     * @var array active filter for items
+     */
+    const ACTIVE_FILTER = ['active' => 1];
+    /**
      * RepositoryApiInterface constructor.
      *
      * @param \Illuminate\Database\Eloquent\Model $model

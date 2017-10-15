@@ -34,4 +34,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('Nova\Models\CorpSite\Blog');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function apiToken()
+    {
+        return $this->hasMany('Nova\Models\CorpSite\Token');
+    }
 }
