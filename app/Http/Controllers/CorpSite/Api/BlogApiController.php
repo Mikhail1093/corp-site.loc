@@ -3,6 +3,7 @@
 namespace Nova\Http\Controllers\CorpSite\Api;
 
 use Illuminate\Http\Request;
+use Nova\CorpSite\Api\ApiRepository;
 use Nova\Models\CorpSite\Blog;
 use Nova\Http\Controllers\CorpSite\AppController;
 
@@ -20,6 +21,9 @@ class BlogApiController extends AppController
      */
     public function index()
     {
+        $blog = new ApiRepository(new Blog());
+        $blog->getAll([]);
+        die;
         $posts = Blog::where('active', 1)->paginate(3);
 
         return response()->json($posts->toArray()['data']);
