@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Nova\Models\CorpSite\ContactFeedBack;
 
 /**
@@ -11,6 +12,8 @@ use Nova\Models\CorpSite\ContactFeedBack;
  *
  * @package Nova\Http\Controllers\CorpSite
  */
+
+/** @noinspection LongInheritanceChainInspection */
 class ContactController extends AppController
 {
 
@@ -33,8 +36,6 @@ class ContactController extends AppController
      */
     public function showFormPage()
     {
-        //dump(session('feed_back_message_success'));
-
         if (null !== session('errors')) {
             dump(session('errors')->toArray());
         }
@@ -75,11 +76,11 @@ class ContactController extends AppController
             ]
         );
 
-        //todo если пользователь авторизирован, то подпихивать id, если нет , то гостевой id (погуглить)
+        /** @noinspection PhpDynamicAsStaticMethodCallInspection */
         ContactFeedBack::create(
             [
                 'active'     => 1,
-                'user_id'    => 2, //todo for tests
+                'user_id'    => (false !== Auth::check()) ? Auth::id() : time(), //todo гостевой id (как получить?)
                 'first_name' => $request->input('first_name'),
                 'last_name'  => $request->input('last_name'),
                 'email'      => $request->input('email'),
