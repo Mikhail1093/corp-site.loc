@@ -43,6 +43,7 @@ class ApiRepository implements RepositoryApiInterface
             throw new IncorrectInputDataException('Input array not must be empty');
         }
 
+        /** @var Model */
         return $this->model::where(self::ACTIVE_FILTER)->get($columns)->toArray();
     }
 

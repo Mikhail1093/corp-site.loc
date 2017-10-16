@@ -1,13 +1,15 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nova\Http\Controllers\CorpSite;
 
+use Nova\Models\CorpSite\Blog;
 use Nova\Models\CorpSite\MainMenu;
 use \Nova\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\Route;
 
 //todo вынести постовряющиеся методы типа рультата зеленого title
+
 /**
  * Class AppController
  *
@@ -66,5 +68,27 @@ class AppController extends Controller
         }
 
         return $menu;
+    }
+
+    /**
+     *
+     */
+    protected function getBlogArchive()
+    {
+        $blog = (array)Blog::where('active', 1)->get()->toArray();
+
+
+        if (count($blog) > 0) {
+            $dates = [];
+
+            foreach ((array)$blog as $blogItem) {
+                $dates[] = date('Y-m', (int)strtotime($blogItem['created_at']));
+            }
+
+            $dates = array_unique($dates);
+        }
+
+        dump($blog);
+        dump($dates);
     }
 }

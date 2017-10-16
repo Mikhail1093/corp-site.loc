@@ -28,6 +28,7 @@ class MainPageController extends AppController
         //результирующий массив гдавной страницы
         $result = [];
 
+        $this->getBlogArchive();
         $menu = $this->getMainMenu();
         //todo оптимизировать в единый метод получения родительского класса
         $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
