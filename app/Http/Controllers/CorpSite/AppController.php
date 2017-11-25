@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nova\Http\Controllers\CorpSite;
 
+use Nova\Http\Middleware\BreadCrumbs;
 use Nova\Models\CorpSite\Blog;
 use Nova\Models\CorpSite\MainMenu;
 use \Nova\Http\Controllers\Controller;

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
+use Nova\Http\Middleware\BreadCrumbs;
 use Nova\Models\CorpSite\Service;
 use Nova\Http\Controllers\Controller;
 
@@ -27,7 +28,7 @@ class ServicesController extends AppController
         $result['menu'] = $menu;
         $result['services'] = Service::where('active', 1)->get()->toArray();
 
-        dump($result);
+        //dump($result);
 
         return view(
             'main_template.services',

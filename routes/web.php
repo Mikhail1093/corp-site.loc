@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,11 @@ use \Illuminate\Support\Facades\Route;
 Route::get('/', 'CorpSite\MainPageController@execute')->name('main_page');
 Route::get('/about-us', 'CorpSite\AboutUsController@execute')->name('about_us');
 Route::get('/services', 'CorpSite\ServicesController@execute')->name('services');
+
+Route::get('/services/test', function () {
+    dump('test');
+});
+
 Route::get('/portfolio', 'CorpSite\PortfolioController@execute')->name('portfolio');
 /*show feed back form*/
 Route::get('/contact', 'CorpSite\ContactController@execute')->name('contact');
