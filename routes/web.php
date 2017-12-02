@@ -19,9 +19,7 @@ Route::get('/', 'CorpSite\MainPageController@execute')->name('main_page');
 Route::get('/about-us', 'CorpSite\AboutUsController@execute')->name('about_us');
 Route::get('/services', 'CorpSite\ServicesController@execute')->name('services');
 
-Route::get('/services/test', function () {
-    dump('test');
-});
+Route::get('/services/test', 'CorpSite\ServicesController@test');
 
 Route::get('/portfolio', 'CorpSite\PortfolioController@execute')->name('portfolio');
 /*show feed back form*/

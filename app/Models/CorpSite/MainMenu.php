@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package Nova\Models\CorpSite
  *
  * @method get()
- * @method static where()
+ * @method static where($column, $operator = null, $value = null, $boolean = 'and')
  * @method paginate(int $count)
  * @method static find(mixed $key, array $columns = ['*']))
  */

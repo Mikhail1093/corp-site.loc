@@ -18,7 +18,7 @@ class PricingController extends AppController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
         $result = [];
 

@@ -21,7 +21,7 @@ class AppController extends Controller
     /**
      *
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
         //todo вынести 'active', 1 в массив ['active', 1] в поле
         //todo вынести получение меню и и цепочки навигацииё

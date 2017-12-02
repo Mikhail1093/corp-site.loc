@@ -28,7 +28,7 @@ class BlogController extends AppController
     /**
      *
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
         $result = [];
 
@@ -121,8 +121,9 @@ class BlogController extends AppController
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function single(Request $request)
+    public function single(Request $request, \Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
+        dump($breadCrumbs);//todo тут добавлять назваение в хлебные крошки
         //dump(session()->all());
         if (null !== session('errors')) {
             dump(session('errors')->toArray());

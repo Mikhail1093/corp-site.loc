@@ -23,7 +23,7 @@ class MainPageController extends AppController
      * @return \Illuminate\Support\Facades\View
      */
     /** @noinspection PhpMissingParentCallCommonInspection */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
         //результирующий массив гдавной страницы
         $result = [];

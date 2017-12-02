@@ -13,6 +13,7 @@ use Nova\Models\CorpSite\MainMenu;
  */
 class BreadCrumbs
 {
+    protected $breadCrumbs;
     /**
      * Пути, адреса страниц, где не нужна цепочка навигации
      *
@@ -23,7 +24,14 @@ class BreadCrumbs
         'contact'
     ];
 
-    public static $breadCrumbs;
+    /**
+     * BreadCrumbs constructor.
+     */
+    public function __construct(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    {
+        $this->breadCrumbs = $breadCrumbs;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -38,15 +46,14 @@ class BreadCrumbs
 
         if (!in_array($currentUri, $this->excludePagesPath, true)) {
             $paths = explode('/', $currentUri);
-            //dump($paths);
+
             foreach ($paths as &$path) {
                 $path = '/' . $path;
             }
 
-            //dump($paths);
-            $pagesName = MainMenu::where('path', $path)->get(['name'])->toArray();
-            dump($pagesName);
-            //view()->share(['breadCrumbs' => $pagesName]);
+            $pagesName = MainMenu::whereIn('path', $paths)->get(['name'])->toArray();
+
+            $this->breadCrumbs->setBreadCrumbs($pagesName);
         }
 
         return $next($request);

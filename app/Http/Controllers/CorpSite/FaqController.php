@@ -17,8 +17,9 @@ class FaqController extends AppController
     /**
      *
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
+        dump($breadCrumbs);
         $result = [];
 
         $menu = $this->getMainMenu();

@@ -16,7 +16,7 @@ class PrivacyController extends AppController
     /**
      *
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
     }
 }

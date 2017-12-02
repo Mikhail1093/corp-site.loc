@@ -18,8 +18,9 @@ class ServicesController extends AppController
     /**
      *
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
+        dump($breadCrumbs->getBreadCrumbs());
         $result = [];
 
         $menu = $this->getMainMenu();
@@ -37,5 +38,10 @@ class ServicesController extends AppController
                 'result' => $result
             ]
         );
+    }
+
+    public function test(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    {
+        dump($breadCrumbs->getBreadCrumbs());
     }
 }

@@ -37,7 +37,7 @@ class TestingModelsController extends AppController
     /**
      *
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
         dump('=================Сomments from blog=====================');
         $comments = Blog::find(1)->comment;

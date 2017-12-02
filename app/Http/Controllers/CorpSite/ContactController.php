@@ -20,7 +20,7 @@ class ContactController extends AppController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function execute()
+    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
         $request = new Request();
 
