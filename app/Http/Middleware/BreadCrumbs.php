@@ -51,7 +51,7 @@ class BreadCrumbs
                 $path = '/' . $path;
             }
 
-            $pagesName = MainMenu::whereIn('path', $paths)->get(['name'])->toArray();
+            $pagesName = MainMenu::whereIn('path', $paths)->get(['name', 'path'])->toArray();
 
             $this->breadCrumbs->setBreadCrumbs($pagesName);
         }

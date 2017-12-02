@@ -34,4 +34,23 @@ class BreadCrumbs
 
         return $this;
     }
+
+    /**
+     * Добавить в конец цепочки навигации элемент
+     *
+     * @param string $elementChain
+     *
+     * @param string $link
+     *
+     * @return array
+     */
+    public function addInChain(string $elementChain, string $link = '#'): array
+    {
+        $this->breadCrumbs[] = [
+            'name' => $elementChain,
+            'path' => $link
+        ];
+
+        return $this->breadCrumbs;
+    }
 }

@@ -22,7 +22,7 @@ class ServicesController extends AppController
     {
         dump($breadCrumbs->getBreadCrumbs());
         $result = [];
-
+        $result['bread_crumbs'] = $breadCrumbs->getBreadCrumbs();
         $menu = $this->getMainMenu();
         //todo оптимизировать в единый метод получения родительского класса
         $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
@@ -42,6 +42,7 @@ class ServicesController extends AppController
 
     public function test(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
+        $breadCrumbs->addInChain('lat');
         dump($breadCrumbs->getBreadCrumbs());
     }
 }
