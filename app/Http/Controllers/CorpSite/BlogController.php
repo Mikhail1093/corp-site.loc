@@ -1,9 +1,10 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
+use Nova\CorpSite\BreadCrumbs;
 use Nova\Http\Controllers\Controller;
 use Nova\Http\Requests\CommentValidate;
 use Nova\Models\CorpSite\{
@@ -26,9 +27,11 @@ class BlogController extends AppController
     const BLOG_LOST_TITLE = 'Блог';
 
     /**
+     * @param \Nova\CorpSite\BreadCrumbs $breadCrumbs
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    public function execute(BreadCrumbs $breadCrumbs)
     {
         $result = [];
 
@@ -61,6 +64,7 @@ class BlogController extends AppController
         $rightBarResult['tagCloud'] = $this->getTagsCloud();
 
         $chainResult['page_name'] = self::BLOG_LOST_TITLE;
+        $chainResult['breadCrumbs'] = $breadCrumbs->getBreadCrumbs(); //todo заменить на метод из основного класса
 
         $chain = view(
             'main_template.nav_chain',
@@ -117,13 +121,14 @@ class BlogController extends AppController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request   $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param \Nova\CorpSite\BreadCrumbs $breadCrumbs
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function single(Request $request, \Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    public function single(Request $request, BreadCrumbs $breadCrumbs)
     {
-        dump($breadCrumbs);//todo тут добавлять назваение в хлебные крошки
         //dump(session()->all());
         if (null !== session('errors')) {
             dump(session('errors')->toArray());
@@ -131,57 +136,63 @@ class BlogController extends AppController
 
         if ($request->isMethod('POST')) {
             return $this->saveComment($request);
-        } else {
-            $result = [];
-
-            $post = Blog::where('code', $request->code)->get();
-
-            //todo если app_deug = true, то писать трейс
-            if (0 === count($post)) {
-                abort(404);
-            }
-
-            $post->load(
-                [
-                    'user',
-                    'blogCatigorie',
-                    'comment'
-                ]
-            );
-
-            $menu = $this->getMainMenu();
-            //todo оптимизировать в единый метод получения родительского класса
-            $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
-            $result['menu'] = $menu;
-            $result['post'] = $post->toArray()[0];
-
-            $rightBarResult['categories'] = $this->getCategories();
-            $rightBarResult['tagCloud'] = $this->getTagsCloud();
-
-            $chainResult['page_name'] = $result['post']['name'];
-
-            $chain = view(
-                'main_template.nav_chain',
-                [
-                    'chainResult' => $chainResult
-                ]
-            );
-
-            $rightBar = view('main_template.right_bar', $rightBarResult);
-
-            //todo правый бар в отдельное представление - топ 3 поста находить по рейтигу и метод расчета рейтинга
-
-            return view(
-                'main_template.blog_single',
-                [
-                    'title'    => 'Блог',
-                    'result'   => $result,
-                    'navChain' => $chain,
-                    'rightBar' => $rightBar,
-                    'token'    => session('_token')
-                ]
-            );
         }
+
+        //todo избавиться от else
+        $result = [];
+
+        $post = Blog::where('code', $request->code)->get();
+
+        //todo если app_deug = true, то писать трейс
+        if (0 === count($post)) {
+            abort(404);
+        }
+
+        $post->load(
+            [
+                'user',
+                'blogCatigorie',
+                'comment'
+            ]
+        );
+
+        $menu = $this->getMainMenu();
+        //todo оптимизировать в единый метод получения родительского класса
+        $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
+        $result['menu'] = $menu;
+        $result['post'] = $post->toArray()[0];
+
+        $rightBarResult['categories'] = $this->getCategories();
+        $rightBarResult['tagCloud'] = $this->getTagsCloud();
+
+        $chainResult['page_name'] = $result['post']['name'];
+
+        $breadCrumbs->addInChain($result['post']['name']);
+        dump($breadCrumbs->getBreadCrumbs());
+        $chainResult['breadCrumbs'] = $breadCrumbs->getBreadCrumbs();
+
+
+        $chain = view(
+            'main_template.nav_chain',
+            [
+                'chainResult' => $chainResult
+            ]
+        );
+
+        $rightBar = view('main_template.right_bar', $rightBarResult);
+
+        //todo правый бар в отдельное представление - топ 3 поста находить по рейтигу и метод расчета рейтинга
+
+        return view(
+            'main_template.blog_single',
+            [
+                'title'    => 'Блог',
+                'result'   => $result,
+                'navChain' => $chain,
+                'rightBar' => $rightBar,
+                'token'    => session('_token')
+            ]
+        );
     }
 
     /**

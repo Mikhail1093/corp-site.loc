@@ -92,4 +92,23 @@ class AppController extends Controller
         dump($blog);
         dump($dates);
     }
+
+    /**
+     * @param string $title
+     * @param array  $breadCrumbs
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function getNavChainSect(string $title, array $breadCrumbs)
+    {
+        $chainResult['page_name'] = $title;
+        $chainResult['breadCrumbs'] = $breadCrumbs;
+
+        return view(
+            'main_template.nav_chain',
+            [
+                'chainResult' => $chainResult
+            ]
+        );
+    }
 }
