@@ -97,18 +97,22 @@ class AppController extends Controller
      * @param string $title
      * @param array  $breadCrumbs
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View | bool
      */
     protected function getNavChainSect(string $title, array $breadCrumbs)
     {
         $chainResult['page_name'] = $title;
         $chainResult['breadCrumbs'] = $breadCrumbs;
 
-        return view(
-            'main_template.nav_chain',
-            [
-                'chainResult' => $chainResult
-            ]
-        );
+        if (view()->exists('main_template.nav_chain')) {
+            return view(
+                'main_template.nav_chain',
+                [
+                    'chainResult' => $chainResult
+                ]
+            );
+        }
+
+        return false;
     }
 }

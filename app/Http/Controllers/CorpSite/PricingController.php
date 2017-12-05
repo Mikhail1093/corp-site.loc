@@ -5,6 +5,7 @@ namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Nova\CorpSite\BreadCrumbs;
 use Nova\Http\Controllers\Controller;
 use Nova\Models\CorpSite\Tariff;
 
@@ -16,9 +17,11 @@ use Nova\Models\CorpSite\Tariff;
 class PricingController extends AppController
 {
     /**
+     * @param \Nova\CorpSite\BreadCrumbs $breadCrumbs
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    public function execute(BreadCrumbs $breadCrumbs)
     {
         $result = [];
 
@@ -41,7 +44,8 @@ class PricingController extends AppController
             'main_template.pricing',
             [
                 'title'  => 'Цены',
-                'result' => $result
+                'result' => $result,
+                'navChain' => $this->getNavChainSect('Цены', $breadCrumbs->getBreadCrumbs())
             ]
         );
     }

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
+use Nova\CorpSite\BreadCrumbs;
 use Nova\Http\Controllers\Controller;
 use Nova\Models\CorpSite\Work;
 
@@ -15,9 +16,11 @@ use Nova\Models\CorpSite\Work;
 class PortfolioController extends AppController
 {
     /**
+     * @param \Nova\CorpSite\BreadCrumbs $breadCrumbs
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    public function execute(BreadCrumbs $breadCrumbs)
     {
         $result = [];
         $menu = $this->getMainMenu();
@@ -26,11 +29,13 @@ class PortfolioController extends AppController
         $result['menu'] = $menu;
         $result['portfolio'] = Work::where('active', 1)->get()->toArray();
 
+
         return view(
             'main_template.portfolio',
             [
                 'title'  => 'Кейсы',
-                'result' => $result
+                'result' => $result,
+                'navChain' => $this->getNavChainSect('Кейсы', $breadCrumbs->getBreadCrumbs())
             ]
         );
     }

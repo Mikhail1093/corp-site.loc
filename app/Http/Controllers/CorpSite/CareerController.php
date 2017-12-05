@@ -37,23 +37,16 @@ class CareerController extends AppController
         $vacancies->load('vacancyRequirement');
 
         $result['vacancy'] = array_chunk($vacancies->toArray(), 2);
-        dump($result);
 
         $chainResult['page_name'] = self::CAREER_TITLE;
 
-        $chain = view(
-            'main_template.nav_chain',
-            [
-                'chainResult' => $chainResult
-            ]
-        );
 
         return view(
             'main_template.career',
             [
                 'title'    => self::CAREER_TITLE,
                 'result'   => $result,
-                'navChain' => $chain
+                'navChain' => $this->getNavChainSect('Карьера', $breadCrumbs->getBreadCrumbs())
             ]
         );
     }

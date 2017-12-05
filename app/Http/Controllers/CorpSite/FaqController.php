@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite;
 
 use Illuminate\Http\Request;
+use Nova\CorpSite\BreadCrumbs;
 use Nova\Http\Controllers\Controller;
 use Nova\Models\CorpSite\Question;
 
@@ -15,11 +16,12 @@ use Nova\Models\CorpSite\Question;
 class FaqController extends AppController
 {
     /**
+     * @param \Nova\CorpSite\BreadCrumbs $breadCrumbs
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
+    public function execute(BreadCrumbs $breadCrumbs)
     {
-        dump($breadCrumbs);
         $result = [];
 
         $menu = $this->getMainMenu();
@@ -32,7 +34,8 @@ class FaqController extends AppController
             'main_template.faq',
             [
                 'title'  => 'Часто задаваемые вопросы',
-                'result' => $result
+                'result' => $result,
+                'navChain' => $this->getNavChainSect('Часто задаваемые вопросы', $breadCrumbs->getBreadCrumbs())
             ]
         );
     }
