@@ -25,14 +25,20 @@ class BlogApiController extends AppApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request)//: \Illuminate\Http\Response
     {
         try {
             $this->checkApiKey($request['key']);
             $blog = new ApiRepository(new Blog());
 
             try {
-                $result['data'] = $blog->getAll();
+                $result['data'] = $blog->getAll(
+                    [
+                        'id',
+                        'created_at'
+                    ]
+                );
+
                 $result['status'] = 200;
 
                 if (0 === count($result['data'])) {

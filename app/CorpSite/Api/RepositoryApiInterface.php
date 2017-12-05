@@ -45,4 +45,33 @@ interface RepositoryApiInterface
      * @return mixed
      */
     public function create(array $attributes);
+
+    /**
+     * @param        $value
+     * @param string $columnName
+     *
+     * @return mixed
+     */
+    public function findOne($value, string $columnName);
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getById(int $id);
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function delete(int $id);
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function update(int $id);
 }

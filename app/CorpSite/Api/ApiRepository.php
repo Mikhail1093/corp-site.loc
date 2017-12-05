@@ -5,7 +5,7 @@
  * Date: 15.10.2017
  * Time: 15:05
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nova\CorpSite\Api;
 
@@ -52,10 +52,15 @@ class ApiRepository implements RepositoryApiInterface
      * @param array $columns
      *
      * @return mixed
+     * @throws \Nova\Exceptions\IncorrectInputDataException
      */
-    public function paginate(int $paginateCount = 50, array $columns = [])
+    public function paginate(int $paginateCount = 50, array $columns = ['*'])
     {
-        // TODO: Implement paginate() method.
+        if (0 === count($columns)) {
+            throw new IncorrectInputDataException('Input array not must be empty');
+        }
+        /** @var Model */
+        return $this->model->select($columns)->where(self::ACTIVE_FILTER)->paginate($paginateCount);
     }
 
     /**
@@ -69,6 +74,46 @@ class ApiRepository implements RepositoryApiInterface
     }
 
     /**
+     * @param        $value
+     * @param string $columnName
+     *
+     * @return mixed
+     */
+    public function findOne($value, string $columnName)
+    {
+        // TODO: Implement findOne() method.
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getById(int $id)
+    {
+        // TODO: Implement getById() method.
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function delete(int $id)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function update(int $id)
+    {
+        // TODO: Implement update() method.
+    }
+    /**
      * @return mixed
      */
     public function getModel()
@@ -81,7 +126,7 @@ class ApiRepository implements RepositoryApiInterface
      *
      * @return ApiRepository
      */
-    protected function setModel($model)
+    protected function setModel($model): ApiRepository
     {
         $this->model = $model;
 
