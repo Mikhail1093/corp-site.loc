@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nova\Models\CorpSite;
 
@@ -23,6 +23,24 @@ class Blog extends Model
      * @var string
      */
     protected $table = 'blog';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'preview_text',
+        'name',
+        'detail_text',
+        'active',
+        'code',
+        'preview_picture',
+        'detail_picture',
+        'author_id',
+        'tags',
+        'category_id',
+        'rating',
+        'blog_catigorie_id'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

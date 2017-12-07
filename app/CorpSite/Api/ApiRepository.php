@@ -11,6 +11,7 @@ namespace Nova\CorpSite\Api;
 
 use Illuminate\Database\Eloquent\Model;
 use Nova\Exceptions\IncorrectInputDataException;
+use Nova\Http\Controllers\CorpSite\PortfolioController;
 
 /**
  * Class ApiRepository
@@ -19,6 +20,9 @@ use Nova\Exceptions\IncorrectInputDataException;
  */
 class ApiRepository implements RepositoryApiInterface
 {
+    /**
+     * @var Model
+     */
     protected $model;
 
     /**
@@ -44,7 +48,7 @@ class ApiRepository implements RepositoryApiInterface
         }
 
         /** @var Model */
-        return $this->model::where(self::ACTIVE_FILTER)->get($columns)->toArray();
+        return $this->model->where(self::ACTIVE_FILTER)->get($columns)->toArray();
     }
 
     /**
@@ -52,13 +56,15 @@ class ApiRepository implements RepositoryApiInterface
      * @param array $columns
      *
      * @return mixed
+     * @throws \InvalidArgumentException
      * @throws \Nova\Exceptions\IncorrectInputDataException
      */
     public function paginate(int $paginateCount = 50, array $columns = ['*'])
     {
-        if (0 === count($columns)) {
+        if (0 === \count($columns)) {
             throw new IncorrectInputDataException('Input array not must be empty');
         }
+
         /** @var Model */
         return $this->model->select($columns)->where(self::ACTIVE_FILTER)->paginate($paginateCount);
     }
@@ -67,10 +73,15 @@ class ApiRepository implements RepositoryApiInterface
      * @param array $attributes
      *
      * @return mixed
+     * @throws \Nova\Exceptions\IncorrectInputDataException
      */
     public function create(array $attributes)
     {
-        // TODO: Implement create() method.
+        if (0 === \count($attributes)) {
+            throw new IncorrectInputDataException('Input array not must be empty');
+        }
+
+        return $this->model->create($attributes);
     }
 
     /**
@@ -113,6 +124,7 @@ class ApiRepository implements RepositoryApiInterface
     {
         // TODO: Implement update() method.
     }
+
     /**
      * @return mixed
      */

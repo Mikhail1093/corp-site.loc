@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nova\Models\CorpSite;
 
@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 class BlogCatigorie extends Model
 {
     protected $table = 'blog_catigories';
+
+    protected $fillable = [
+        'id'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

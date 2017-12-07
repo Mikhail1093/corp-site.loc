@@ -8,6 +8,7 @@ use Nova\Exceptions\IncorrectInputDataException;
 use Nova\Models\CorpSite\Blog;
 use Nova\Http\Controllers\CorpSite\AppController;
 use Nova\Models\CorpSite\Token;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class BlogApiController
@@ -25,7 +26,7 @@ class BlogApiController extends AppApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)//: \Illuminate\Http\Response
+    public function index(Request $request)
     {
         try {
             $this->checkApiKey($request['key']);
@@ -61,11 +62,59 @@ class BlogApiController extends AppApiController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws \Nova\Exceptions\IncorrectInputDataException
      */
-    public function create()
+    public function create(Request $request): JsonResponse
     {
-        var_dump('create');
+        //todo DTO объект для значений блога
+        //todo свои проелки консистентности объекта
+
+        try { //todo вынести в родительский класс и получить через parent?
+            $this->checkApiKey($request['key']);
+        } catch (IncorrectInputDataException $exception) {
+            //todo лог
+            dump('error api key'); //todo
+        }
+
+        //for tests
+        $testData = [
+            'preview_text'      => 'test preview text',
+            'name'              => 'test name',
+            'detail_text'       => 'test derail text',
+            'active'            => 1,
+            'code'              => 'test_preview_text',
+            'preview_picture'   => 'test-api',
+            'detail_picture'    => 'test',
+            'author_id'         => 2,
+            'tags'              => 'test_tags',
+            'category_id'       => 3,
+            'rating'            => 2,
+            'blog_catigorie_id' => 3,
+            'user_id'           => 2 //todo кто добавил (чей токен)
+        ];
+
+        $newPost = new ApiRepository(new Blog());
+
+        //todo try catch?? или хватит DTO ?
+        $newPostResult = $newPost->create($testData);
+
+        if ($newPostResult instanceof Blog) {
+            return response()->json([
+                'result' => 'success',
+                'data'   => ['id' => $newPostResult->id]
+            ]);
+        }
+
+        return response()->json(
+            [
+                'result' => 'error', //todo это какая-то внутренняя ( external error )
+                'data'   => []
+            ],
+            500
+        );
     }
 
     /**
@@ -132,8 +181,14 @@ class BlogApiController extends AppApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        //todo как подмешать в запрос тип DELETE??
+        var_dump($request->id);
+        die;
+        $post = new ApiRepository(new Blog());
+
+        $postDeleteResult = $post->delete();
+        dump($postDeleteResult);
     }
 }
