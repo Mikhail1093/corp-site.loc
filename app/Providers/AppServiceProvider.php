@@ -8,6 +8,11 @@ use Nova\CorpSite\BreadCrumbs;
 use Nova\CorpSite\CustomDirective;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class AppServiceProvider
+ *
+ * @package Nova\Providers
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**

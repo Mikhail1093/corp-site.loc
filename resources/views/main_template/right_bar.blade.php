@@ -73,28 +73,18 @@
     <!-- End Popular Posts -->
 
     <div class="widget">
-        <h3>Blog Categories</h3>
+        <h3>Категории</h3>
         <div>
             <div class="row-fluid">
-                <div class="span6">
-                    <ul class="unstyled">
-                        <li><a href="#">Development</a></li>
-                        <li><a href="#">Design</a></li>
-                        <li><a href="#">Updates</a></li>
-                        <li><a href="#">Tutorial</a></li>
-                        <li><a href="#">News</a></li>
-                    </ul>
-                </div>
-
-                <div class="span6">
-                    <ul class="unstyled">
-                        <li><a href="#">Joomla</a></li>
-                        <li><a href="#">Wordpress</a></li>
-                        <li><a href="#">Drupal</a></li>
-                        <li><a href="#">Magento</a></li>
-                        <li><a href="#">Bootstrap</a></li>
-                    </ul>
-                </div>
+                @foreach((array)$categories as $categoryCol)
+                    <div class="span6">
+                        <ul class="unstyled">
+                            @foreach((array)$categoryCol as $category)
+                                <li><a href="#">{{ $category['name'] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
             </div>
 
         </div>
@@ -102,17 +92,11 @@
     <!-- End Category Widget -->
 
     <div class="widget">
-        <h3>Tag Cloud</h3>
+        <h3>Теги</h3>
         <ul class="tag-cloud unstyled">
-            <li><a class="btn btn-mini btn-primary" href="#">CSS3</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">HTML5</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">WordPress</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">Joomla</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">Drupal</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">Bootstrap</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">jQuery</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">Tutorial</a></li>
-            <li><a class="btn btn-mini btn-primary" href="#">Update</a></li>
+            @foreach((array)$tagCloud as $tag)
+                <li><a class="btn btn-mini btn-primary" href="#">{!! $tag !!}</a></li>
+            @endforeach
         </ul>
     </div>
     <!-- End Tag Cloud Widget -->

@@ -40,7 +40,7 @@ class BlogController extends AppController
         $result['footer_menu'] = $this->getFooterListView($menu, 'twits', 'Наша компания');
         $result['menu'] = $menu;
 
-        $posts = Blog::where('active', 1)->paginate(3);
+        $posts = Blog::where('active', 1)->paginate(3); //->orderByDesc('id')
 
         $posts->load(
             [
@@ -58,11 +58,12 @@ class BlogController extends AppController
             $item['created_at'] = date('M j, Y', (int)strtotime($item['created_at']));
         });
 
-        dump($result['posts']);
 
-        $rightBarResult['categories'] = $this->getCategories();
+        $countCol = \ceil(\count($this->getCategories()) / 2);
+        $rightBarResult['categories'] = array_chunk($this->getCategories(), (int)$countCol);
         $rightBarResult['tagCloud'] = $this->getTagsCloud();
 
+        dump($rightBarResult['categories']);
         $chainResult['page_name'] = self::BLOG_LOST_TITLE;
         $chainResult['breadCrumbs'] = $breadCrumbs->getBreadCrumbs(); //todo заменить на метод из основного класса
 
@@ -81,7 +82,8 @@ class BlogController extends AppController
                 'title'    => self::BLOG_LOST_TITLE,
                 'result'   => $result,
                 'navChain' => $chain,
-                'rightBar' => $rightBar
+                'rightBar' => $rightBar,
+                'pager'    => $posts->links()
             ]
         );
     }

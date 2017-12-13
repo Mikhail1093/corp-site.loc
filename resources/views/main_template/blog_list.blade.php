@@ -25,7 +25,7 @@
                             </div>
                             <p><img src="{{ $post['preview_picture'] }}" width="100%" alt=""/></p>
                             <p>{{ $post['preview_text'] }}</p>
-                            <a class="btn btn-link" href="#">{{ trans('blog.read_more ') }}<i
+                            <a class="btn btn-link" href="{{ route('blog_single', [$post['code']], false)  }}">{{ trans('blog.read_more ') }}<i
                                         class="icon-angle-right"></i></a>
                         </div>
                 @endforeach
@@ -35,26 +35,13 @@
 
                 <!-- Paginationa -->
                 <div class="pagination">
-                    <ul>
-                        <li><a href="#"><i class="icon-angle-left"></i></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#"><i class="icon-angle-right"></i></a></li>
-                    </ul>
+                    {!! $pager !!}
                 </div>
-
-
             </div>
         </div>
-
         {{--rigth bar--}}
         {!! $rightBar !!}
-
     </div>
-
 </section>
 
 @include('main_template.footer')
