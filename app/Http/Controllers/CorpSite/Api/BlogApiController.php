@@ -171,24 +171,49 @@ class BlogApiController extends AppApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $test = [
+            'name' => 'api test',
+            'detail_picture' => 'pic_api_test'
+        ];
+
+
+        $t = $request->colst;
+        echo '<pre>';
+        var_dump($t);
+        echo '</pre>';
+        echo '<pre>';
+        var_dump(\unserialize($t, []));
+        echo '</pre>';
+
+
+        var_dump(__METHOD__);
+        echo '</pre>';
+        /*echo '<pre>';
+        var_dump($request->cols);
+        echo '</pre>';*/
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
+     * @internal param int $id
+     *
      */
     public function destroy(Request $request)
     {
         //todo как подмешать в запрос тип DELETE??
-        var_dump($request->id);
-        die;
+        //todo в родительский класс проверку свойства
+        $id = $request->id;
+
         $post = new ApiRepository(new Blog());
 
-        $postDeleteResult = $post->delete();
-        dump($postDeleteResult);
+        $postDeleteResult = $post->delete($id);
+        echo '<pre>';
+        var_dump($postDeleteResult);
+        echo '</pre>';
+
     }
 }

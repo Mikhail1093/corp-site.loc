@@ -108,21 +108,26 @@ class ApiRepository implements RepositoryApiInterface
     /**
      * @param int $id
      *
-     * @return mixed
+     * @return int
      */
-    public function delete(int $id)
+    public function delete(int $id): int
     {
-        // TODO: Implement delete() method.
+        return $this->model::destroy($id);
     }
 
     /**
-     * @param int $id
+     * @param int   $id
      *
+     * @param array $columns
+     *
+     * type PUT
      * @return mixed
      */
-    public function update(int $id)
+    public function update(int $id, array $columns)
     {
-        // TODO: Implement update() method.
+        //todo проверка что массив не пуст
+        //todo вырезать из массива id, есть он есть ?
+        $this->model->where('id', $id)->update($columns);
     }
 
     /**

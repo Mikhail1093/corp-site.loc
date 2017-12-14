@@ -69,9 +69,11 @@ interface RepositoryApiInterface
     public function delete(int $id);
 
     /**
-     * @param int $id
+     * @param int   $id
+     *
+     * @param array $columns
      *
      * @return mixed
      */
-    public function update(int $id);
+    public function update(int $id, array $columns);
 }
