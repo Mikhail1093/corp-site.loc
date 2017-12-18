@@ -3,7 +3,10 @@
 namespace Nova\Http\Controllers\CorpSite\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 use Nova\CorpSite\Api\ApiRepository;
+use Nova\CorpSite\AppLogger;
 use Nova\Exceptions\IncorrectInputDataException;
 use Nova\Models\CorpSite\Blog;
 use Nova\Http\Controllers\CorpSite\AppController;
@@ -19,15 +22,48 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /** @noinspection LongInheritanceChainInspection */
 class BlogApiController extends AppApiController
 {
+   /* protected $log;
+
+    public function __construct(AppLogger $appLogger)
+    {
+        $this->setLog($appLogger);
+    }*/
+
     /**
      * Display a listing of the resource.
      *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function index(Request $request)
     {
+
+        $log = AppLogger::getLogger('grishi');
+        $log->debug(
+            'REQUEST',
+            [
+                'url'    => URL::current(),
+                'method' => $request->method(),
+                'params' => $request->toArray()
+            ]
+        );
+
+        //Log::info('test', ['123', 'fsfs']);
+       /* $logger = Log::getMonolog();
+        //Процессоры логгирования
+        $logger->pushProcessor(new ProcessIdProcessor);
+        $logger->pushProcessor(new MemoryUsageProcessor);
+        $logger->pushProcessor(new MemoryPeakUsageProcessor);
+        $logger->pushProcessor(new WebProcessor);
+        $logger->pushProcessor(new IntrospectionProcessor());*/
+        echo '<pre>';
+        var_dump($log);
+        echo '</pre>';
+        /*$log->setName('grishi_log.log');
+        $log->info('tset');*/
+
         try {
             $this->checkApiKey($request['key']);
             $blog = new ApiRepository(new Blog());
@@ -168,11 +204,21 @@ class BlogApiController extends AppApiController
      * @param  int                      $id
      *
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function update(Request $request, $id)
     {
+        $log = AppLogger::getLogger('grishi');
+        $log->debug(
+            'REQUEST',
+            [
+                'url'    => URL::current(),
+                'method' => $request->method(),
+                'params' => $request->toArray()
+            ]
+        );
         $test = [
-            'name' => 'api test',
+            'name'           => 'api test',
             'detail_picture' => 'pic_api_test'
         ];
 
@@ -215,5 +261,21 @@ class BlogApiController extends AppApiController
         var_dump($postDeleteResult);
         echo '</pre>';
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
+
+    /**
+     * @param mixed $log
+     */
+    public function setLog($log)
+    {
+        $this->log = $log;
     }
 }
