@@ -22,12 +22,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /** @noinspection LongInheritanceChainInspection */
 class BlogApiController extends AppApiController
 {
-   /* protected $log;
+    /* protected $log;
 
-    public function __construct(AppLogger $appLogger)
-    {
-        $this->setLog($appLogger);
-    }*/
+     public function __construct(AppLogger $appLogger)
+     {
+         $this->setLog($appLogger);
+     }*/
 
     /**
      * Display a listing of the resource.
@@ -48,21 +48,7 @@ class BlogApiController extends AppApiController
                 'method' => $request->method(),
                 'params' => $request->toArray()
             ]
-        );
-
-        //Log::info('test', ['123', 'fsfs']);
-       /* $logger = Log::getMonolog();
-        //Процессоры логгирования
-        $logger->pushProcessor(new ProcessIdProcessor);
-        $logger->pushProcessor(new MemoryUsageProcessor);
-        $logger->pushProcessor(new MemoryPeakUsageProcessor);
-        $logger->pushProcessor(new WebProcessor);
-        $logger->pushProcessor(new IntrospectionProcessor());*/
-        echo '<pre>';
-        var_dump($log);
-        echo '</pre>';
-        /*$log->setName('grishi_log.log');
-        $log->info('tset');*/
+        ); //todo подумать как обернуть, так как ткое логирование будет везеде
 
         try {
             $this->checkApiKey($request['key']);
@@ -87,7 +73,10 @@ class BlogApiController extends AppApiController
                 $result['status'] = 500; //todo подумать
             }
         } catch (IncorrectInputDataException $exception) {
-            //todo лог
+            $log->error('IncorrectInputDataException', [
+                'code'    => $exception->getCode(),
+                'message' => $exception->getMessage()
+            ]);
             $result['data'] = ['error' => $exception->getMessage()];
             $result['status'] = $exception->getCode(); //todo подумать
         }

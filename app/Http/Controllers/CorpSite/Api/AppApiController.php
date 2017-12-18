@@ -28,10 +28,12 @@ class AppApiController extends Controller
      */
     public function checkApiKey(string $apiKey): array//todo точно ли строка а не Request?
     {
+        //todo - проверить, передали ли вообще ключ
+        //todo код некоккетного апи ключа
         $token = Token::where('key', $apiKey)->get(['key'])->toArray();
 
         if (0 === count($token)) {
-            throw new IncorrectInputDataException('api-key not found', 500);
+            throw new IncorrectInputDataException('incorrect api-key. Api-key not found', 500);
         }
 
         return $token;
