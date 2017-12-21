@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nova\Http\Controllers\CorpSite\Api;
 
@@ -30,7 +30,7 @@ class AppApiController extends Controller
     {
         //todo - проверить, передали ли вообще ключ
         //todo код некоккетного апи ключа
-        $token = Token::where('key', $apiKey)->get(['key'])->toArray();
+        $token = Token::where('key', $apiKey)->get(['key', 'user_id'])->toArray();
 
         if (0 === count($token)) {
             throw new IncorrectInputDataException('incorrect api-key. Api-key not found', 500);

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 namespace Nova\Http\Controllers\CorpSite\Api;
 
 use Illuminate\Http\Request;
@@ -97,6 +97,7 @@ class BlogApiController extends AppApiController
         //todo DTO объект для значений блога
         //todo свои проелки консистентности объекта
 
+        //todo - проверять через ПОЛИТИКУ
         try { //todo вынести в родительский класс и получить через parent?
             $this->checkApiKey($request['key']);
         } catch (IncorrectInputDataException $exception) {

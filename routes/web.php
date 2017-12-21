@@ -57,4 +57,4 @@ Route::get('/vk-sdk-test', 'CorpSite\PersonalCabinet\VkSdkTest@index');
 Route::get('/test-ord-db', 'OrdersReports@index');
 Route::get('/test-ord-file', 'OrdersReports@index');
 
-Route::get('/test-policy', 'CorpSite\TestComt@testPolicyComment');
+Route::get('/test-policy', 'PolicyControlle@index');

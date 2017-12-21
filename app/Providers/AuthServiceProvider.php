@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Nova\Models\CorpSite\Comment;
 use Nova\Policies\CommentPolicy;
+use Nova\Policies\TestPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,8 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'Nova\Model' => 'Nova\Policies\ModelPolicy',
-        Comment::class => CommentPolicy::class
-        //'Nova\Models\CorpSite\Comment' => 'Nova\Policies\CommentPolicy'
+        Comment::class => CommentPolicy::class,
+        Comment::class => TestPolicy::class
     ];
 
     /**
