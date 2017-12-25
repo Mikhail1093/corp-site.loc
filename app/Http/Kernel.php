@@ -3,6 +3,7 @@
 namespace Nova\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Nova\Http\Middleware\Admin\CheckAdminPermissions;
 
 class Kernel extends HttpKernel
 {
@@ -40,7 +41,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-        ],
+        ]
     ];
 
     /**
@@ -57,6 +58,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Nova\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'intest' => \Nova\Http\Middleware\ForTest::class
+        'intest' => \Nova\Http\Middleware\ForTest::class,
+        'admin.permissions' => CheckAdminPermissions::class
     ];
 }

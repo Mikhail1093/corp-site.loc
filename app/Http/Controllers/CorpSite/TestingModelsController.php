@@ -8,23 +8,7 @@ use Nova\Http\Controllers\Controller;
 use Nova\User;
 
 use Nova\Models\CorpSite\{
-    Work,
-    Blog,
-    Team,
-    Slide,
-    Offer,
-    Skill,
-    Partner,
-    Tariff,
-    Service,
-    Comment,
-    Vacancy,
-    Question,
-    MainMenu,
-    OurService,
-    BlogCatigorie,
-    ContactFeedBack,
-    VacancyRequirement
+    Role, Work, Blog, Team, Slide, Offer, Skill, Partner, Tariff, Service, Comment, Vacancy, Question, MainMenu, OurService, BlogCatigorie, ContactFeedBack, VacancyRequirement
 };
 
 /**
@@ -39,6 +23,12 @@ class TestingModelsController extends AppController
      */
     public function execute(\Nova\CorpSite\BreadCrumbs $breadCrumbs)
     {
+        dump('=================User relations=====================');
+        $user = new User();
+        $user3 = User::find(3);
+        dump($user3->load('roles')->toArray()['roles']);
+
+        die;
         dump('=================Сomments from blog=====================');
         $comments = Blog::find(1)->comment;
         dump($comments->toArray());

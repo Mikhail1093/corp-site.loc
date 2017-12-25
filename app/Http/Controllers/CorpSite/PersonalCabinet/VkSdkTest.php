@@ -18,12 +18,13 @@ class VkSdkTest extends Controller
     {
         $vk = new VK([
             'client_id'     => 6186057,
-            'redirect_uri'  => 'http://localhost:3000/',
+            //'redirect_uri'  => 'http://localhost:3000/vk-sdk-test',
+            'redirect_uri'  => 'http://corp-site.loc/vk-sdk-test',
             'client_secret' => 'NZLwSzXj2IICSuVfBRMJ',
-            'access_token' => '027e8ce3d1d229336e'
+           // 'access_token' => '027e8ce3d1d229336e'
         ]);
 
-        $vk->setAccessToken('11581ca0dce1f1aa42c72214cc67487eb50e8a6bde1a2492710be6cf231e91743369e866a667cd0738b8e');
+        //$vk->setAccessToken('11581ca0dce1f1aa42c72214cc67487eb50e8a6bde1a2492710be6cf231e91743369e866a667cd0738b8e');
         dump($vk);
         $data = $vk->api(
             'groups.getMembers',
@@ -33,10 +34,10 @@ class VkSdkTest extends Controller
         );
         //dump($data);
 
-        dump($vk->getLoginUrl());
+        //dump($vk->getLoginUrl());
 
-        /*dump($vk->authenticate('code'));
-        dump($vk);*/
+        dump($vk->authenticate('code'));
+        //dump($vk);
 
         $data = $vk->api(
             'groups.get',
@@ -46,6 +47,6 @@ class VkSdkTest extends Controller
             ]
         );
 
-         dump($data);
+        dump($data);
     }
 }

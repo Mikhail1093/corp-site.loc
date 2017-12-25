@@ -4,6 +4,8 @@ namespace Nova;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nova\Models\CorpSite\Role;
+use Nova\Models\CorpSite\UserRole;
 
 class User extends Authenticatable
 {
@@ -15,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -24,7 +28,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -41,5 +46,18 @@ class User extends Authenticatable
     public function apiToken()
     {
         return $this->hasMany('Nova\Models\CorpSite\Token');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function isAdmin(User $user)
+    {
+        dump($this->roles()->where('id', $user->id))->get();
     }
 }

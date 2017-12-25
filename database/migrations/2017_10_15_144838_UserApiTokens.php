@@ -13,14 +13,16 @@ class UserApiTokens extends Migration
      */
     public function up()
     {
-        Schema::create('tokens', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('key')->unique();
-            $table->integer('is_active')->default(1);
-            $table->timestamps();
-            $table->integer('user_id')->unsigned()->default(1);
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+        if (!Schema::hasTable('tokens')) {
+            Schema::create('tokens', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('key')->unique();
+                $table->integer('is_active')->default(1);
+                $table->timestamps();
+                $table->integer('user_id')->unsigned()->default(1);
+                $table->foreign('user_id')->references('id')->on('users');
+            });
+        }
     }
 
     /**
