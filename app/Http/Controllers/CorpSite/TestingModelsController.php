@@ -25,10 +25,10 @@ class TestingModelsController extends AppController
     {
         dump('=================User relations=====================');
         $user = new User();
-        $user3 = User::find(3);
+        $user3 = User::find(4);
         dump($user3->load('roles')->toArray()['roles']);
+        dump($user3->load('basket')->toArray()['basket']);
 
-        die;
         dump('=================Сomments from blog=====================');
         $comments = Blog::find(1)->comment;
         dump($comments->toArray());

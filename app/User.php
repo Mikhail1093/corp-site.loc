@@ -2,11 +2,18 @@
 
 namespace Nova;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nova\Models\CorpSite\Role;
+use Nova\Models\CorpSite\Shop\Order;
 use Nova\Models\CorpSite\UserRole;
 
+/**
+ * Class User
+ *
+ * @package Nova
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -19,7 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -29,7 +36,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -49,15 +56,35 @@ class User extends Authenticatable
     }
 
     /**
+     * @param \Nova\User $user
+     *
+     * @return bool
+     */
+    public function isAdmin(User $user): bool
+    {
+        //todo проверить если юзер вообще в группе
+        foreach ((array)$user->load('roles')->toArray()['roles'] as $role) {
+            if ('admin' === $role['code']) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
 
-    public function isAdmin(User $user)
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function basket(): BelongsToMany
     {
-        dump($this->roles()->where('id', $user->id))->get();
+        return $this->belongsToMany(Order::class, 'basket');
     }
 }
