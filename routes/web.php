@@ -53,9 +53,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin.permissions']], function () {
     Route::get('/settings', 'CorpSite\Admin\SettingsController@index');
 
-    Route::get('/posts', function () {
-        dump('for content managers and admins');
-    });//todo тут будут ресурс
+    Route::resource('posts', 'CorpSite\Admin\AdminBlogPage');
+    Route::resource('vacancies', 'CorpSite\Admin\AdminVacanciesPage');
 });
 
 
